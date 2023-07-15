@@ -12,7 +12,7 @@ if (isset($_GET['act'])) {
     switch ($act) {
         // product page
         case 'products':
-            echo "this page is product page";
+            require_once "products/products_list.php";
             break;
 
         // users page
@@ -28,7 +28,8 @@ if (isset($_GET['act'])) {
         // edit user page
         case "edit_user":
             require_once "users/edit_user.php";
-            break;    
+            break;
+            
 
         default:
             require_once "home.php";
