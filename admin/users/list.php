@@ -1,18 +1,36 @@
 <?php
 require_once "../dao/users.php";
 
-$users = select_all_users();
+$total_users = count_users();
+$limit = 5;
+$total_page = ceil($total_users['total'] / $limit);
+
+// nếu không có page number thì mặc định là 1
+$page_number = isset($_GET['page']) ? $_GET['page'] : 1;
+
+if ($page_number <= 1) {
+    $page_number = 1;
+}
+
+if ($page_number >= $total_page) {
+    $page_number = $total_page;
+}
+
+
+$start = ($page_number - 1) * $limit;
+
+$users = select_user_by_page($start, $limit);
 
 if (isset($_COOKIE['add-user'])) {
     echo '<div class="alert alert-success" role="alert">
-            '.$_COOKIE['add-user'].'
+            ' . $_COOKIE['add-user'] . '
           </div>
     ';
 }
 
 if (isset($_COOKIE['delete-user'])) {
     echo '<div class="alert alert-success" role="alert">
-            '.$_COOKIE['delete-user'].'
+            ' . $_COOKIE['delete-user'] . '
           </div>
     ';
 }
@@ -73,20 +91,44 @@ if (isset($_COOKIE['delete-user'])) {
                     <?= $user['type'] == 1 ? 'admin' : 'khách hàng' ?>
                 </th>
                 <th scope="col">
-                    <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button class="button">Sửa</button></a>
+                    <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button
+                            class="button">Sửa</button></a>
                     <a onclick="return confirm('Bạn có muón xóa khách hàng này không')"
-                    href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="button">Xóa</button></a>
+                        href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="button">Xóa</button></a>
                 </th>
             </tr>
         <?php endforeach ?>
     </tbody>
 </table>
-<div class="button">
-    <button type="submit" id="check-all" class="btn btn-outline-primary">Chọn tất cả</button>
-    <button type="button" id="uncheck" class="btn btn-outline-primary">Bỏ chọn tất cả</button>
-    <button type="button" class="btn btn-outline-primary">Xóa các mục chọn</button>
-    <a href="index.php?act=add-user"><button type="button" class="btn btn-outline-primary">Nhập thêm</button></a>
-</div>
+
+<!-- page number list -->
+<section class="page-number my-5">
+    <div class="d-flex justify-content-center">
+        <a class="mx-2" href="index.php?act=users&page=1">|&lt;</a>
+        <a class="mx-2" href="index.php?act=users&page=<?= $page_number - 1 ?>">&lt;&lt;</a>
+        <?php
+        for ($i = 0; $i < $total_page; $i++) {
+            echo '<a class="mx-2" href="index.php?act=users&page=' . ($i + 1) . '">' . ($i + 1) . '</a>';
+        }
+        ?>
+        <a class="mx-2" href="index.php?act=users&page=<?= $page_number + 1 ?>">&gt;&gt;</a>
+        <a class="mx-2" href="index.php?act=users&page=<?= $total_page ?>">&gt;|</a>
+    </div>
+
+</section>
+
+<section class="mt-1">
+    <div class="button">
+        <button type="submit" id="check-all" class="btn btn-outline-primary">Chọn tất cả</button>
+        <button type="button" id="uncheck" class="btn btn-outline-primary">Bỏ chọn tất cả</button>
+        <button type="button" class="btn btn-outline-primary">Xóa các mục chọn</button>
+        <a href="index.php?act=add-user"><button type="button" class="btn btn-outline-primary">Nhập thêm</button></a>
+    </div>
+</section>
+
+
+
+.
 
 <!-- js -->
 

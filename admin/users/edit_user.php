@@ -143,7 +143,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         <!-- button -->
         <div class="button">
-            <button type="submit" class="btn btn-outline-primary">Thêm mới</button>
+            <button type="submit" class="btn btn-outline-primary">Sửa</button>
             <button type="reset" class="btn btn-outline-primary">Nhập lại</button>
             <a href="index.php?act=users"><button type="button" class="btn btn-outline-primary">Danh sách</button></a>
         </div>
