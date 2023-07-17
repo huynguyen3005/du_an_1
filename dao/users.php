@@ -14,7 +14,7 @@ function count_users(){
 function add_user($email,$password,$type,$name,$address,$phone_number,$photo,$status,$created_on,$sex){
     $sql = "INSERT INTO users (email,password,type,name,address,phone_number,photo,status,created_on,sex) 
     VALUES ('$email','$password',b'$type','$name','$address','$phone_number','$photo',b'$status','$created_on','$sex') ;";
-    pdo_execute($sql);
+    return pdo_execute($sql);
 }
 
 

@@ -22,6 +22,7 @@ function pdo_execute($sql)
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute();
+        return $conn->lastInsertId();
     } catch (PDOException $e) {
         throw $e;
     } finally {
@@ -48,19 +49,19 @@ function pdo_query($sql)
 
 // truy vấn một bản ghi
 
-function pdo_query_one($sql){
-    $sql_args = array_slice(func_get_args(),1);
+function pdo_query_one($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
 
-    try{
+    try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
-    }
-    catch(Exception $e){
+    } catch (Exception $e) {
         throw $e;
-    } finally{
+    } finally {
         unset($sql);
     }
 }
@@ -81,5 +82,6 @@ function pdo_query_value($sql)
         unset($conn);
     }
 }
+
 
 ?>
