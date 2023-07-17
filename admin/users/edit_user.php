@@ -94,7 +94,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Hình ảnh</label>
-            <input type="file" class="form-control" id="inputPassword4" name="photo">
+            <input type="file" class="form-control" id="inputPassword4" name="photo" accept="image/*">
             <div class="<?= isset($message['check_photo']) ? 'alert' : '' ?> alert-danger">
                 <?= $message['check_photo'] ?? '' ?>
             </div>

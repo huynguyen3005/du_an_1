@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($file['tmp_name'], "../content/img/users/" . $file['name']);
         $created_on = date("Y-m-d");
         add_user($email,$hash_password,$type,$name,$address,$phone_number,$file['name'],$status,$created_on,$sex);
+        // $insertedId = pdo_insertedId();
         setcookie("add-user", "thêm user thành công", time() + 30);
         header("location: index.php?act=users");
         die();
@@ -127,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Hình ảnh</label>
-            <input type="file" class="form-control" id="inputPassword4" name="photo">
+            <input type="file" class="form-control" id="inputPassword4" name="photo" accept="image/*">
             <div class="<?= isset($message['photo']) ? 'alert' : ''?> alert-danger">
                 <?= $message['photo'] ?? '' ?>
             </div>

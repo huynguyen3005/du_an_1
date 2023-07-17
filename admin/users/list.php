@@ -106,11 +106,13 @@ if (isset($_COOKIE['delete-user'])) {
     <div class="d-flex justify-content-center">
         <a class="mx-2" href="index.php?act=users&page=1">|&lt;</a>
         <a class="mx-2" href="index.php?act=users&page=<?= $page_number - 1 ?>">&lt;&lt;</a>
+        <div class="btn-group me-2" role="group" aria-label="First group">
         <?php
         for ($i = 0; $i < $total_page; $i++) {
-            echo '<a class="mx-2" href="index.php?act=users&page=' . ($i + 1) . '">' . ($i + 1) . '</a>';
+            echo '<a id="page'.($i+1).'" class="mx-2" href="index.php?act=users&page=' . ($i + 1) . '"><button type="button" class="btn btn-primary">'.($i+1).'</button></a>';
         }
         ?>
+        </div>
         <a class="mx-2" href="index.php?act=users&page=<?= $page_number + 1 ?>">&gt;&gt;</a>
         <a class="mx-2" href="index.php?act=users&page=<?= $total_page ?>">&gt;|</a>
     </div>
@@ -133,6 +135,7 @@ if (isset($_COOKIE['delete-user'])) {
 <!-- js -->
 
 <script>
+    document.getElementById('page<?= $page_number?>').style.border = "2px solid green";
     var checkBox = document.getElementsByClassName('form-check-input');
     var checkAll = document.getElementById('check-all');
     var uncheck = document.getElementById('uncheck');

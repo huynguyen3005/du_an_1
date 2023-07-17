@@ -31,6 +31,15 @@ if (isset($_GET['act'])) {
             break;
             
 
+        // edit product
+        case "edit_product":
+            require_once "products/edit_product.php";
+            break;
+        // add product
+        case "add-product":
+            require_once "products/add_product.php";
+            break;
+            
         default:
             require_once "home.php";
             break;
