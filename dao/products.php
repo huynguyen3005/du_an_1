@@ -25,5 +25,8 @@ function delele_product_by_id($product_id){
     $sql = "DELETE FROM products WHERE product_id = '$product_id' ;";
     return pdo_execute($sql);
 }
-
+function select_product_by_id($product_id){
+    $sql = "SELECT * FROM products WHERE product_id = '$product_id';";
+    return pdo_query_one($sql);
+}
 ?>

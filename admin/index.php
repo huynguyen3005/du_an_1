@@ -39,7 +39,20 @@ if (isset($_GET['act'])) {
         case "add-product":
             require_once "products/add_product.php";
             break;
-            
+
+        // loại sp
+        case "categories":
+            require_once "categories/categories.php";
+            break;
+        
+        case "edit-category":
+            require_once "categories/edit_category.php";
+            break;
+        
+        case "add-category":
+            require_once "categories/add_category.php";
+            break;
+        
         default:
             require_once "home.php";
             break;

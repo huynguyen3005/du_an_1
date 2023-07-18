@@ -15,4 +15,9 @@ function delete_img_by_product_id($product_id){
     $sql = "DELETE FROM images WHERE product_id = $product_id ;";
     pdo_execute($sql);
 }
+
+function delete_img_by_id($id){
+    $sql = "DELETE FROM images WHERE img_id = $id ;";
+    pdo_execute($sql);
+}
 ?>

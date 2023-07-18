@@ -1,5 +1,6 @@
 <?php
 require_once "../dao/products.php";
+require_once "../dao/categories.php";
 
 // hiện session
 if (isset($_SESSION['add-product'])) {
@@ -41,6 +42,7 @@ $start = ($page_number - 1) * $limit;
 
 $products = select_products_by_page($start, $limit);
 
+
 ?>
 
 
@@ -70,7 +72,9 @@ $products = select_products_by_page($start, $limit);
                     <?= $product['name'] ?>
                 </th>
                 <th scope="col">
-                    <?= $product['category_id'] ?>
+                    <?php $category = category_select_by_id($product['category_id']);
+                    echo $category['name'];
+                    ?>
                 </th>
                 <th scope="col">
                     <?= number_format($product['price'], 0) ?>

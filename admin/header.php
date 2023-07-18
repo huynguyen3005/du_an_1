@@ -22,7 +22,7 @@
                     <a class="nav-link green" aria-current="page" href="#">Home</a>
                     <a class="nav-link light" href="index.php?act=products">Sản phẩm</a>
                     <a class="nav-link light" href="index.php?act=users">Người dùng</a>
-                    <a class="nav-link light" href="">Loại hàng</a>
+                    <a class="nav-link light" href="index.php?act=categories">Loại hàng</a>
                     <a class="nav-link light" href="">Giỏ hàng</a>
                 </div>
             </div>
