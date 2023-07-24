@@ -11,7 +11,7 @@ $SITE_URL = "$ROOT_URL/site";
 /*
  * Định nghĩa đường dẫn chứa ảnh sử dụng trong upload
  */
-$IMAGE_DIR = $_SERVER["DOCUMENT_ROOT"] . "$ROOT_URL/content/images";
+$IMAGE_DIR = $_SERVER["DOCUMENT_ROOT"] . "$ROOT_URL/content/img/";
 /*
  * 2 biến toàn cục cần thiết để chia sẻ giữa controller và view
  */
@@ -86,7 +86,7 @@ function check_login()
     global $SITE_URL;
     if (isset($_SESSION['user'])) {
         // nếu là khách hàng thì return
-        if ($_SESSION['user']['vai_tro'] == true) {
+        if ($_SESSION['user']['type'] == true) {
             return;
         }
 
@@ -96,6 +96,6 @@ function check_login()
         }
     }
     $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"]; // tạo session chứa link trang hiện tại
-    header("location: $SITE_URL/tai_khoan/dang_nhap.php");
+    header("location: $SITE_URL/login.php");
 }
 ?>

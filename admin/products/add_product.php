@@ -69,8 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $product_id = add_product($category, $name, $description, $price, $date_added, $quantity);
         echo count($images['name']);
         for ($i=0; $i < count($images['name']); $i++) {
-            echo $i;
-            move_uploaded_file($images['tmp_name'][$i], "../content/img/products/" . $images['name'][$i]);
+            $path_dir = "../content/img/products/$product_id/";
+            mkdir($path_dir, 0777, true);
+            move_uploaded_file($images['tmp_name'][$i], "$path_dir" . $images['name'][$i]);
             add_image($images['name'][$i], $product_id);
         }
 
@@ -87,21 +88,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Tên hàng hóa</label>
             <input type="text" class="form-control" id="inputPassword4" name="name">
-            <div class="alert-danger">
+            <div class="<?= isset($message['name']) ? "alert" : "" ?> alert-danger">
                 <?= $message['name'] ?? '' ?>
             </div>
         </div>
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Đơn giá</label>
             <input type="number" class="form-control" id="inputAddress" name="price" placeholder="">
-            <div class="alert-danger">
+            <div class="<?= isset($message['price']) ? "alert" : "" ?> alert-danger">
                 <?= $message['price'] ?? '' ?>
             </div>
         </div>
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Số lượng</label>
             <input type="number" class="form-control" id="inputAddress" name="quantity" placeholder="">
-            <div class="alert-danger">
+            <div class="<?= isset($message['quantity']) ? "alert" : "" ?> alert-danger">
                 <?= $message['quantity'] ?? '' ?>
             </div>
         </div>
@@ -113,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <option value="<?= $category['category_id'] ?>"><?= $category['name'] ?></option>
                 <?php endforeach ?>
             </select>
-            <div class="alert-danger">
+            <div class="<?= isset($message['category']) ? "alert" : "" ?> alert-danger">
                 <?= $message['category'] ?? '' ?>
             </div>
         </div>
@@ -123,10 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input id="image-input" type="file" class="form-control" id="inputAnh" name="images[]" accept="image/*"
                     multiple>
             </div>
-            <div class="alert-danger">
+            <div class="<?= isset($message['size']) ? "alert" : "" ?> alert-danger">
                 <?= $message['size'] ?? '' ?>
             </div>
-            <div class="alert-danger">
+            <div class="<?= isset($message['image']) ? "alert" : "" ?> alert-danger">
                 <?= $message['image'] ?? '' ?>
             </div>
         </div>
@@ -141,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="inputZip" class="form-label">Mô tả</label>
             <textarea name="description" style="min-height: 200px;" class="form-control" placeholder="mô tả"
                 id="description"></textarea>
-            <div class="alert-danger">
+            <div class="<?= isset($message['description']) ? "alert" : "" ?> alert-danger">
                 <?= $message['description'] ?? '' ?>
             </div>
         </div>
@@ -149,9 +150,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- button -->
         <div class="button">
-            <a href="add_hang_hoa.php"><button type="submit" class="btn btn-outline-primary">Thêm mới</button></a>
+            <button type="submit" class="btn btn-outline-primary">Thêm mới</button>
             <button type="reset" class="btn btn-outline-primary">Nhập lại</button>
-            <a href="hang_hoa.php"><button type="button" class="btn btn-outline-primary">Danh sách</button></a>
+            <a href="index.php?act=products"><button type="button" class="btn btn-outline-primary">Danh sách</button></a>
         </div>
     </form>
 </section>

@@ -25,5 +25,16 @@ function delele_product_by_id($product_id){
     $sql = "DELETE FROM products WHERE product_id = '$product_id' ;";
     return pdo_execute($sql);
 }
+function select_product_by_id($product_id){
+    $sql = "SELECT * FROM products WHERE product_id = '$product_id';";
+    return pdo_query_one($sql);
+}
+
+function edit_product_by_id($product_id, $category_id, $name, $quantity, $price, $description){
+    $sql = "UPDATE products SET category_id = '$category_id', name = '$name', quantity = '$quantity', price = '$price', description = '$description'
+     WHERE product_id = '$product_id' ;"; 
+    return pdo_execute($sql);
+}
+
 
 ?>

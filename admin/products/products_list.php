@@ -1,17 +1,25 @@
 <?php
 require_once "../dao/products.php";
+require_once "../dao/categories.php";
 
 // hiện session
-if (isset($_SESSION['add-product'])) {
+if (isset($_COOKIE['add-product'])) {
     echo '<div class="alert alert-success" role="alert">
             ' . $_COOKIE['add-product'] . '
           </div>
     ';
 }
 
-if (isset($_SESSION['delete-product'])) {
+if (isset($_COOKIE['delete-product'])) {
     echo '<div class="alert alert-success" role="alert">
             ' . $_COOKIE['delete-product'] . '
+          </div>
+    ';
+}
+
+if (isset($_COOKIE['edit-product'])) {
+    echo '<div class="alert alert-success" role="alert">
+            ' . $_COOKIE['edit-product'] . '
           </div>
     ';
 }
@@ -40,6 +48,7 @@ if ($page_number >= $total_page) {
 $start = ($page_number - 1) * $limit;
 
 $products = select_products_by_page($start, $limit);
+
 
 ?>
 
@@ -70,7 +79,9 @@ $products = select_products_by_page($start, $limit);
                     <?= $product['name'] ?>
                 </th>
                 <th scope="col">
-                    <?= $product['category_id'] ?>
+                    <?php $category = category_select_by_id($product['category_id']);
+                    echo $category['name'];
+                    ?>
                 </th>
                 <th scope="col">
                     <?= number_format($product['price'], 0) ?>
