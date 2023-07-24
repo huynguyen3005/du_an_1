@@ -10,6 +10,11 @@ if (isset($_GET['act'])) {
     $act = $_GET['act'];
 
     switch ($act) {
+        //home page
+        case 'home':
+            require_once "home.php";
+            break;
+
         // product page
         case 'products':
             require_once "products/products_list.php";

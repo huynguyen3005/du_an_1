@@ -1,6 +1,20 @@
 <?php
 require_once "../dao/categories.php";
 
+if (isset($_COOKIE['add-category'])) {
+    echo '<div class="alert alert-success" role="alert">
+        ' . $_COOKIE['add-category'] . '
+           </div>
+            ';
+}
+
+if (isset($_COOKIE['delete-category'])) {
+    echo '<div class="alert alert-success" role="alert">
+        ' . $_COOKIE['delete-category'] . '
+           </div>
+            ';
+}
+
 $page_number = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 10;
 
@@ -44,7 +58,7 @@ $categories = categorie_select_by_page($start, $limit);
                         <a
                             href="index.php?act=edit-category&category_id=<?= $category['category_id'] ?>"><button>Sửa</button></a>
                         <a onclick="return confirm('Bạn có muốn xóa loại hàng không')"
-                            href="delete_category.php?category_id=<?= $category['category_id'] ?>"><button>Xóa</button></a>
+                            href="categories/delete_category.php?category_id=<?= $category['category_id'] ?>"><button>Xóa</button></a>
                     </td>
                 </tr>
             <?php endforeach ?>

@@ -10,21 +10,67 @@ $images = select_img_by_product_id($product_id);
 
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // xử lý form thông tin sản phẩm
+    if (isset($_POST['edit-info'])) {
+        $category = $_POST['category'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $quantity = $_POST['quantity'];
 
-if (isset($_POST['add-img'])) {
-    // Xử lí dữ liệu từ add-img
-    $imgs = $_FILES['images'];
-    if($imgs['size'][0] != null) {
-        for ($i = 0; $i < count($imgs['name']); $i++) {
-            move_uploaded_file($imgs['tmp_name'][$i], "../content/img/products/" . $imgs['name'][$i]);
-            add_image($imgs['name'][$i], $product_id);
-            header("location: index.php?act=edit_product&product_id=$product_id");
+
+        if (strlen($category) == 0) {
+            $message['category'] = 'mời bạn chọn loại hàng';
+        }
+    
+        if (strlen($name) == 0) {
+            $message['name'] = 'mời bạn nhập tên sản phẩm';
+        }
+    
+        if (strlen($description) == 0) {
+            $message['description'] = "nhập mô tả cho sản phẩm";
+        }
+    
+        if ($price <= 0) {
+            $message['price'] = "nhập giá cho sản phẩm";
+        }
+    
+        if ($quantity <= 0) {
+            $message['quantity'] = "nhập số lượng cho sản phẩm";
+        }
+
+        if(!isset($message)){
+            // edit_product_by_id($product_id, $category, $name, $quantity, $price, $description);
+            setcookie("edit-product", "sửa sản phẩm thành công", time() + 30);
+            header("location: index.php?act=products");
+            die();
+        }
+    
+    }
+
+
+    // php xử lý các file ảnh của sản phẩm
+    if (isset($_POST['add-img'])) {
+        // Xử lí dữ liệu từ add-img
+        $imgs = $_FILES['images'];
+        if ($imgs['size'][0] != null) {
+            for ($i = 0; $i < count($imgs['name']); $i++) {
+                $path_dir = "../content/img/products/$product_id/";
+                if (!file_exists($path_dir)) {
+                    // Tạo thư mục mới
+                    mkdir($path_dir);
+                }
+                move_uploaded_file($imgs['tmp_name'][$i], "$path_dir" . $imgs['name'][$i]);
+                add_image($imgs['name'][$i], $product_id);
+                header("location: index.php?act=edit_product&product_id=$product_id");
+            }
         }
     }
+
 }
+
+
 
 // check form sản phẩm
 ?>
@@ -82,8 +128,7 @@ if (isset($_POST['add-img'])) {
 
             <!-- button -->
             <div class="button">
-                <a href="index.php?act=add-product"><button type="submit"
-                        class="btn btn-outline-primary">Sửa</button></a>
+                <button type="submit" name="edit-info" class="btn btn-outline-primary">Sửa</button>
                 <button type="reset" class="btn btn-outline-primary">Nhập lại</button>
                 <a href="index.php?act=products"><button type="button" class="btn btn-outline-primary">Danh
                         sách</button></a>
@@ -97,7 +142,8 @@ if (isset($_POST['add-img'])) {
             <?php foreach ($images as $image): ?>
                 <div class="col-md-3">
                     <div>
-                        <img width="200px" height="360px" src="../content/img/products/<?= $image['img_name'] ?>" alt="#">
+                        <img width="200px" height="360px"
+                            src="../content/img/products/<?php echo $product_id . '/' . $image['img_name'] ?>" alt="#">
                     </div>
                     <div class="mt-2">
                         <a class="mx-auto"

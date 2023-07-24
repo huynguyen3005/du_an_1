@@ -3,16 +3,23 @@ require_once "../dao/products.php";
 require_once "../dao/categories.php";
 
 // hiện session
-if (isset($_SESSION['add-product'])) {
+if (isset($_COOKIE['add-product'])) {
     echo '<div class="alert alert-success" role="alert">
             ' . $_COOKIE['add-product'] . '
           </div>
     ';
 }
 
-if (isset($_SESSION['delete-product'])) {
+if (isset($_COOKIE['delete-product'])) {
     echo '<div class="alert alert-success" role="alert">
             ' . $_COOKIE['delete-product'] . '
+          </div>
+    ';
+}
+
+if (isset($_COOKIE['edit-product'])) {
+    echo '<div class="alert alert-success" role="alert">
+            ' . $_COOKIE['edit-product'] . '
           </div>
     ';
 }

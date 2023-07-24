@@ -40,4 +40,22 @@ function select_user_by_page($start,$limit){
     $sql = "SELECT * FROM users LIMIT $start, $limit;";
     return pdo_query($sql);
 }
+
+function login($user_name)
+{
+    $sql = "SELECT * FROM users WHERE email = '$user_name';";
+    return pdo_query_one($sql);
+}
+
+function register($email, $hash_password, $name, $created_on){
+    $sql = "INSERT INTO users (email, password, type, name, status, created_on) values 
+    ('$email', '$hash_password', b'0', '$name', b'1', '$created_on');";
+    return pdo_execute($sql);
+}
+
+
+function update_password($userid, $new_password){
+    $sql = "UPDATE users SET password = '$new_password' WHERE user_id = '$userid'";
+    pdo_execute($sql);
+}
 ?>

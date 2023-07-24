@@ -69,8 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $product_id = add_product($category, $name, $description, $price, $date_added, $quantity);
         echo count($images['name']);
         for ($i=0; $i < count($images['name']); $i++) {
-            echo $i;
-            move_uploaded_file($images['tmp_name'][$i], "../content/img/products/" . $images['name'][$i]);
+            $path_dir = "../content/img/products/$product_id/";
+            mkdir($path_dir, 0777, true);
+            move_uploaded_file($images['tmp_name'][$i], "$path_dir" . $images['name'][$i]);
             add_image($images['name'][$i], $product_id);
         }
 
