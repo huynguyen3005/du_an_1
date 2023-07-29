@@ -15,6 +15,11 @@ function count_all_products(){
     return pdo_query_one($sql);
 }
 
+function count_all_products_by_category($category_id){
+    $sql = "SELECT count(*) as total FROM products where category_id = '$category_id';";
+    return pdo_query_one($sql);
+}
+
 function add_product($category_id, $name, $description, $price, $date_added, $quantity){
     $sql = "INSERT INTO products (category_id, name, description, price, date_added, quantity, sold)
     VALUES ('$category_id', '$name', '$description', '$price', '$date_added', '$quantity', '0') ;";

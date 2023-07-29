@@ -1,3 +1,14 @@
+<?php
+require_once "../dao/cart.php";
+require_once "../dao/wishlist.php";
+if (isset($_SESSION['user'])){
+    $count_cart = count_cart_user($_SESSION['user']['user_id']);
+    $count_wishlist = count_wishlist($_SESSION['user']['user_id']);
+}
+
+?>
+
+
 <!-- header area start -->
 <header>
     <div class="tp-header-area tp-header-style-primary tp-header-height">
@@ -35,7 +46,7 @@
                                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                                 stroke-linejoin="round" />
                                         </svg>
-                                    </span> +(402) 763 282 46
+                                    </span> +(84) 763 282 46
                                 </a>
                             </div>
                         </div>
@@ -59,10 +70,10 @@
                                     </ul>
                                 </div>
                                 <div class="tp-header-top-menu-item tp-header-currency">
-                                    <span class="tp-header-currency-toggle" id="tp-header-currency-toggle">USD</span>
+                                    <span class="tp-header-currency-toggle" id="tp-header-currency-toggle">VND</span>
                                     <ul>
                                         <li>
-                                            <a href="#">EUR</a>
+                                            <a href="#">USD</a>
                                         </li>
                                         <li>
                                             <a href="#">CHF</a>
@@ -85,10 +96,10 @@
                                             <a href="index.php?act=wishlist">Wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="cart.html">Cart</a>
+                                            <a href="index.php?act=cart">Cart</a>
                                         </li>
                                         <li>
-                                            <a href="login.html">Logout</a>
+                                            <a href="logout.php">Logout</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -124,14 +135,11 @@
                                         <li class="has-mega-menu ">
                                             <a href="index.php?act=products">Products</a>
                                         </li>
-                                        <li>
-                                            <a href="coupon.html">Coupons</a>
-                                        </li>
                                         <li class="has-mega-menu">
-                                            <a href="blog.html">Blog</a>
+                                            <a href="index.php?act=blog">Blog</a>
                                         </li>
                                         <li class="">
-                                            <a href="contact.html">Contact</a>
+                                            <a href="index.php?act=contact">Contact</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -456,7 +464,7 @@
                                                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                                     stroke-linejoin="round" />
                                             </svg>
-                                            <span class="tp-header-action-badge"><?= count($_SESSION['wishlist']) ?? '0'?></span>
+                                            <span id="wish-count" class="tp-header-action-badge"><?= isset($count_wishlist) ? $count_wishlist['total'] : '0'?></span>
                                         </a>
                                     </div>
                                     <div class="tp-header-action-item">
@@ -476,7 +484,7 @@
                                                 <path d="M13.5343 10.1018H13.5801" stroke="currentColor"
                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
-                                            <span class="tp-header-action-badge">13</span>
+                                            <span id="cart-count" class="tp-header-action-badge"><?= isset($count_cart) ? $count_cart['total'] : '0'?></span>
                                         </button>
                                     </div>
                                     <div class="tp-header-action-item tp-header-hamburger mr-20 d-xl-none">

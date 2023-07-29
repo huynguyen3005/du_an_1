@@ -15,7 +15,7 @@ $IMAGE_DIR = $_SERVER["DOCUMENT_ROOT"] . "$ROOT_URL/content/img/";
 /*
  * 2 biến toàn cục cần thiết để chia sẻ giữa controller và view
  */
-$VIEW_NAME = "index.php";
+$VIEW_NAME = "index.html";
 $MESSAGE = '';
 // GIỚI THIỆU GLOBAL.PHP
 /**

@@ -54,7 +54,7 @@ require_once "../global.php";
                 require_once "register.php";
                 break;
 
-            //oeder page
+            //order page
             case "order";
                 require_once "order.php";
                 break;
@@ -77,6 +77,17 @@ require_once "../global.php";
             case "wishlist":
                 require_once "wishlist.php";
                 break;
+
+            // checkout
+            case "checkout":
+                require_once "checkout.php";
+                break;
+
+            // contact
+            case "contact":
+                require_once "contact.php";
+                break;
+
 
             default:
                 require_once "home.php";

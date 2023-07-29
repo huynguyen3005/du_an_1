@@ -25,41 +25,6 @@
                <div class="row">
                   <div class="col-xl-3 col-lg-4">
                      <div class="tp-shop-sidebar mr-10">
-                        <!-- filter -->
-                        <div class="tp-shop-widget mb-35">
-                           <h3 class="tp-shop-widget-title no-border">Price Filter</h3>
-
-                           <div class="tp-shop-widget-content">
-                              <div class="tp-shop-widget-filter">
-                                 <div id="slider-range" class="mb-10"></div>
-                                 <div class="tp-shop-widget-filter-info d-flex align-items-center justify-content-between">
-                                    <span class="input-range">
-                                       <input type="text" id="amount" readonly>
-                                    </span>
-                                    <button class="tp-shop-widget-filter-btn" type="button">Filter</button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- status -->
-                        <div class="tp-shop-widget mb-50">
-                           <h3 class="tp-shop-widget-title">Product Status</h3>
-
-                           <div class="tp-shop-widget-content">
-                              <div class="tp-shop-widget-checkbox">
-                                 <ul class="filter-items filter-checkbox">
-                                    <li class="filter-item checkbox">
-                                       <input id="on_sale" type="checkbox">
-                                       <label for="on_sale">On sale</label>
-                                    </li>
-                                    <li class="filter-item checkbox">
-                                       <input id="in_stock" type="checkbox">
-                                       <label for="in_stock">In Stock</label>
-                                    </li>
-                                 </ul><!-- .filter-items -->
-                              </div>
-                           </div>
-                        </div>
                         <!-- categories -->
                         <div class="tp-shop-widget mb-50">
                            <h3 class="tp-shop-widget-title">Categories</h3>
@@ -77,65 +42,6 @@
                                     <li><a href="#">Electronics <span>29</span></a></li>
                                     <li><a href="#">Phones <span>05</span></a></li>
                                     <li><a href="#">Grocery <span>14</span></a></li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-                        <!-- color -->
-                        <div class="tp-shop-widget mb-50">
-                           <h3 class="tp-shop-widget-title">Filter by Color</h3>
-
-                           <div class="tp-shop-widget-content">
-                              <div class="tp-shop-widget-checkbox-circle-list">
-                                 <ul>
-                                    <li>
-                                       <div class="tp-shop-widget-checkbox-circle">
-                                          <input type="checkbox" id="red">
-                                          <label for="red">Red</label>
-                                          <span data-bg-color="#FF401F" class="tp-shop-widget-checkbox-circle-self"></span>
-                                       </div>
-                                       <span class="tp-shop-widget-checkbox-circle-number">8</span>
-                                    </li>
-                                    <li>
-                                       <div class="tp-shop-widget-checkbox-circle">
-                                          <input type="checkbox" id="dark_blue">
-                                          <label for="dark_blue">Dark Blue</label>
-                                          <span data-bg-color="#4666FF" class="tp-shop-widget-checkbox-circle-self"></span>
-                                       </div>
-                                       <span class="tp-shop-widget-checkbox-circle-number">14</span>
-                                    </li>
-                                    <li>
-                                       <div class="tp-shop-widget-checkbox-circle">
-                                          <input type="checkbox" id="oragnge">
-                                          <label for="oragnge">Orange</label>
-                                          <span data-bg-color="#FF9E2C" class="tp-shop-widget-checkbox-circle-self"></span>
-                                       </div>
-                                       <span class="tp-shop-widget-checkbox-circle-number">18</span>
-                                    </li>
-                                    <li>
-                                       <div class="tp-shop-widget-checkbox-circle">
-                                          <input type="checkbox" id="purple">
-                                          <label for="purple">Purple</label>
-                                          <span data-bg-color="#B615FD" class="tp-shop-widget-checkbox-circle-self"></span>
-                                       </div>
-                                       <span class="tp-shop-widget-checkbox-circle-number">23</span>
-                                    </li>
-                                    <li>
-                                       <div class="tp-shop-widget-checkbox-circle">
-                                          <input type="checkbox" id="yellow">
-                                          <label for="yellow">Yellow</label>
-                                          <span data-bg-color="#FFD747" class="tp-shop-widget-checkbox-circle-self"></span>
-                                       </div>
-                                       <span class="tp-shop-widget-checkbox-circle-number">17</span>
-                                    </li>
-                                    <li>
-                                       <div class="tp-shop-widget-checkbox-circle">
-                                          <input type="checkbox" id="green">
-                                          <label for="green">Green</label>
-                                          <span data-bg-color="#41CF0F" class="tp-shop-widget-checkbox-circle-self"></span>
-                                       </div>
-                                       <span class="tp-shop-widget-checkbox-circle-number">15</span>
-                                    </li>
                                  </ul>
                               </div>
                            </div>
