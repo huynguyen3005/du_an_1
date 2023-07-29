@@ -1,4 +1,5 @@
 <?php
+require_once "../global.php";
 require_once "../dao/users.php";
 
 if (isset($_COOKIE['register-success'])) {

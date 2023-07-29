@@ -1,10 +1,11 @@
-<div id="result"></div>
-
  <?php
  require_once "../dao/products.php";
  require_once "../dao/images.php";
+ require_once "../dao/categories.php";
  $products = select_products_by_page(0, 8);
  $img = select_one_img_by_product_id(39);
+ $count_products = count_all_products();
+ $categories = categories_select_all();
  ?>
 
 
@@ -276,13 +277,19 @@
                                     data-bs-target="#nav-allCollection" type="button" role="tab"
                                     aria-controls="nav-allCollection" aria-selected="true">
                                     All Collection
-                                    <span class="tp-product-tab-tooltip">26</span>
+                                    <span class="tp-product-tab-tooltip"><?= $count_products['total']?></span>
                                 </button>
+
+                                <!-- categories -->
+                                <?php foreach($categories as $category) : ?>
+
                                 <button class="nav-link" id="nav-shoe-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-shoe" type="button" role="tab" aria-controls="nav-shoe"
-                                    aria-selected="false">Shoes
-                                    <span class="tp-product-tab-tooltip">05</span>
+                                    aria-selected="false"><?= $category['name']?>
+                                    <span class="tp-product-tab-tooltip"><?php echo count_all_products_by_category($category['category_id'])['total'] ;?></span>
                                 </button>
+                                <?php endforeach ?>
+                                <!-- end category -->
                                 <button class="nav-link" id="nav-clothing-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-clothing" type="button" role="tab" aria-controls="nav-clothing"
                                     aria-selected="false">Clothing
@@ -311,13 +318,13 @@
                                 
                                         <div class="tp-product-item-2 mb-40">
                                             <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img">
-                                                <a href="product-details.html">
-                                                    <img src="../content/img/products/<?= $product['product_id']?>/<?= select_one_img_by_product_id($product['product_id'])['img_name']?>" alt="">
+                                                <a href="index.php?act=product-details&product_id=<?= $product['product_id'] ?>">
+                                                    <img src="../content/img/products/<?= $product['product_id'] ?>/<?= select_one_img_by_product_id($product['product_id'])['img_name'] ?>" alt="">
                                                 </a>
                                                 <!-- product action -->
                                                 <div class="tp-product-action-2 tp-product-action-blackStyle">
                                                     <div class="tp-product-action-item-2 d-flex flex-column">
-                                                    <a href="index.php?act=product-details&product_id=<?= $product['product_id']?>"><button type="button"
+                                                    <a href="index.php?act=product-details&product_id=<?= $product['product_id'] ?>"><button type="button"
                                                             class="tp-product-action-btn-2 tp-product-add-cart-btn">
                                                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -343,7 +350,7 @@
                                                             <span class="tp-product-tooltip tp-product-tooltip-right">Add to
                                                                 Cart</span>
                                                         </button></a>
-                                                        <a href="index.php?act=product-details&product_id=<?= $product['product_id']?>"><button type="button"
+                                                        <a href="index.php?act=product-details&product_id=<?= $product['product_id'] ?>"><button type="button"
                                                             class="tp-product-action-btn-2 tp-product-quick-view-btn"
                                                             data-bs-toggle="modal" data-bs-target="#producQuickViewModal">
                                                             <svg width="18" height="15" viewBox="0 0 18 15" fill="none"
@@ -360,7 +367,7 @@
                                                         </button></a>
                                                         <!-- add to wishlist -->
                                                         <form class="product-form" method="post">
-                                                            <input type="hidden" value="<?= $product['product_id']?>" name="wishlist">
+                                                            <input type="hidden" value="<?= $product['product_id'] ?>" name="wishlist">
                                                         <button type="button" onclick="submitForm(this)"
                                                             class="tp-product-action-btn-2 tp-product-add-to-wishlist-btn">
                                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -376,6 +383,7 @@
                                                                 Wishlist</span>
                                                         </button>
                                                         </form>
+                                                        <!-- form end -->
                                                         <button type="button"
                                                             class="tp-product-action-btn-2 tp-product-add-to-compare-btn">
                                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
@@ -404,7 +412,7 @@
                                                     <a href="#">Whitetails Store</a>
                                                 </div>
                                                 <h3 class="tp-product-title-2">
-                                                    <a href="index.php?act=product-details&product_id=<?= $product['product_id']?>"><?= $product['name'] ?? ''?></a>
+                                                    <a href="index.php?act=product-details&product_id=<?= $product['product_id'] ?>"><?= $product['name'] ?? '' ?></a>
                                                 </h3>
                                                 <div class="tp-product-rating-icon tp-product-rating-icon-2">
                                                     <span><i class="fa-solid fa-star"></i></span>
@@ -414,7 +422,7 @@
                                                     <span><i class="fa-solid fa-star"></i></span>
                                                 </div>
                                                 <div class="tp-product-price-wrapper-2">
-                                                    <span class="tp-product-price-2 new-price"><?= number_format($product['price']) ?? ''   ?>Đ</span>
+                                                    <span class="tp-product-price-2 new-price"><?= number_format($product['price']) ?? '' ?>Đ</span>
                                                     <!-- <span class="tp-product-price-2 old-price">$475.00</span> -->
                                                 </div>
                                             </div>
@@ -3732,6 +3740,8 @@
     function submitForm(buttonElement) {
       var formElement = $(buttonElement).closest("form");
       var formData = formElement.serialize();
+      var wishicon = $('#wish-count');
+      console.log(wishicon);
 
       // Sử dụng Ajax để gửi dữ liệu form đến máy chủ PHP
       $.ajax({
@@ -3740,11 +3750,20 @@
         data: formData,
         success: function(response) {
           // Xử lý kết quả trả về từ máy chủ ở đây
-          $("#result").html(response);
+        //   $("#result").html(response);
+        if(response == "login" ){
+            var comfirm = window.confirm('mời bạn đăng nhập để yêu thích sản phẩm');
+            if(comfirm){
+                window.location.href = "index.php?act=login";
+            }
+        }else{
+          wishicon.html(response);
+        }
         },
         error: function() {
           // Xử lý lỗi (nếu có)
           console.error('Đã xảy ra lỗi khi gửi form.');
+          
         }
       });
     }

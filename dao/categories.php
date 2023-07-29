@@ -21,6 +21,7 @@ function categorie_count_all(){
     return pdo_query_one($sql);
 }
 
+
 function insert_category($name){
     $sql = "INSERT INTO categories (name) VALUES ('$name')";
     pdo_execute($sql);

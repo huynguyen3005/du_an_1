@@ -1,12 +1,12 @@
 <?php
 session_start();
+require_once "../dao/wishlist.php";
 $product_id = $_GET['product_id'];
 
-$index = array_search($product_id, $_SESSION['wishlist']);
-echo $index;
-if ($index !== false) {
-    unset($_SESSION['wishlist'][$index]);
+if(isset($_SESSION['user'])){
+    delete_wish($product_id, $_SESSION['user']['user_id']);
 }
+
 header("Location: index.php?act=wishlist");
 die();
 ?>
