@@ -54,7 +54,7 @@ $total = 0;
                   </td>
                   <!-- title -->
                   <td class="tp-cart-title">
-                    <a href="product-details.html">Legendary Whitetails Wmen's.</a>
+                    <a href="#"><?= select_product_name_by_cart_id($cart['cart_id'])['name']?></a>
                   </td>
                   <!-- color -->
                   <td style="color: <?=$cart['color_name']?>;" class=""><?= $cart['color_name']?></td>

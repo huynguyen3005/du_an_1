@@ -24,4 +24,11 @@ function delete_cart($cart_id){
     pdo_execute($sql);
 }
 
+
+function select_product_name_by_cart_id($cart_id){
+    $sql = "SELECT products.name as name FROM products INNER join product_variants on products.product_id = product_variants.product_id
+    INNER JOIN cart on cart.variant_id = product_variants.variant_id WHERE cart.cart_id = $cart_id;";
+    return pdo_query_one($sql);
+}
+
 ?>

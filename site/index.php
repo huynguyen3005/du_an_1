@@ -87,7 +87,10 @@ require_once "../global.php";
             case "contact":
                 require_once "contact.php";
                 break;
-
+            // about 
+            case "about":
+                require_once "about.php";
+                break;
 
             default:
                 require_once "home.php";

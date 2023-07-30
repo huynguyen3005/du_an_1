@@ -41,7 +41,7 @@ if (isset($_POST['login'])) {
 
             if ($res['type'] == 1) {
                // echo "<script> window.location.href='../admin/index.php';</script>";
-               header("location: ../admin/index.php");
+               header("location: index.php?act=profile");
                
             } else {
                // echo "<script> window.location.href='index.php?act=users';</script>";
