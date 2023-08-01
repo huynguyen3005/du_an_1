@@ -1,6 +1,7 @@
 <?php
 require_once "../dao/order.php";
 require_once "../dao/product_variants.php";
+require_once "../dao/cart.php";
 
 if (isset($_SESSION['user'])) {
    $order_id = $_GET['order_id'];

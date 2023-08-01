@@ -15,6 +15,13 @@ if (isset($_COOKIE['delete-category'])) {
             ';
 }
 
+if (isset($_COOKIE['edit-category'])) {
+    echo '<div class="alert alert-success" role="alert">
+        ' . $_COOKIE['edit-category'] . '
+           </div>
+            ';
+}
+
 $page_number = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 10;
 
@@ -83,9 +90,6 @@ $categories = categorie_select_by_page($start, $limit);
     <!-- button -->
     <section class="mt-1">
         <div class="button">
-            <button type="submit" id="check-all" class="btn btn-outline-primary">Chọn tất cả</button>
-            <button type="button" id="uncheck" class="btn btn-outline-primary">Bỏ chọn tất cả</button>
-            <button type="button" class="btn btn-outline-primary">Xóa các mục chọn</button>
             <a href="index.php?act=add-category"><button type="button" class="btn btn-outline-primary">Nhập
                     thêm</button></a>
         </div>

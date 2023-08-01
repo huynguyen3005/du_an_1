@@ -83,6 +83,7 @@ require_once "../global.php";
                 require_once "checkout.php";
                 break;
 
+
             // contact
             case "contact":
                 require_once "contact.php";

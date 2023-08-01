@@ -38,6 +38,9 @@ if (isset($_SESSION['user'])) {
          foreach ($carts as $cart) {
             // insert into cart_order table 
             add_order_cart($cart['cart_id'], $order_id);
+            foreach($carts as $cart) {
+               cart_update_status($cart['cart_id']);
+            }
          }
       }
    }

@@ -93,27 +93,9 @@ if (isset($_POST['login'])) {
                <div class="tp-login-wrapper">
                   <div class="tp-login-top text-center mb-30">
                      <h3 class="tp-login-title">Login to Shofy.</h3>
-                     <p>Don’t have an account? <span><a href="register.html">Create a free account</a></span></p>
+                     <p>Don’t have an account? <span><a href="index.php?act=register">Create a free account</a></span></p>
                   </div>
                   <div class="tp-login-option">
-                     <div class="tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center">
-                        <div class="tp-login-option-item has-google">
-                           <a href="#">
-                              <img src="assets/img/icon/login/google.svg" alt="">
-                              Sign in with google
-                           </a>
-                        </div>
-                        <div class="tp-login-option-item">
-                           <a href="#">
-                              <img src="assets/img/icon/login/facebook.svg" alt="">
-                           </a>
-                        </div>
-                        <div class="tp-login-option-item">
-                           <a href="#">
-                              <img class="apple" src="assets/img/icon/login/apple.svg" alt="">
-                           </a>
-                        </div>
-                     </div>
                      <div class="tp-login-mail text-center mb-40">
                         <p>or Sign in with <a href="#">Email</a></p>
                      </div>

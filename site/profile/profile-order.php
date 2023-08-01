@@ -2,7 +2,6 @@
 require_once "../dao/order.php";
 
 if (isset($_SESSION['user'])){
-    echo $_SESSION['user']['user_id'];
     $orders = select_order_by_user($_SESSION['user']['user_id']);
 }
 
@@ -26,7 +25,7 @@ if (isset($_SESSION['user'])){
                     <th scope="row"> #<?= $order['order_id']?></th>
                     <td data-info="title"><?= number_format($order['total_price'])?></td>
                     <td data-info="status <?= $order['order_status'] == 1 ? 'done' : 'pending' ?>"><?= $order['order_status'] == 0 ? 'Pending' : "Complete" ?> </td>
-                    <td><a href="#" class="tp-logout-btn">Invoice</a></td>
+                    <td><a href="index.php?act=order&order_id=<?= $order['order_id']?>" class="tp-logout-btn">Invoice</a></td>
                 </tr>
                 <?php endforeach ?>
                 <!-- end -->

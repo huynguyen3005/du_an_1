@@ -257,7 +257,7 @@ $total = 0;
                      </form>
                      <!-- end form -->
                   </div>
-                  <?php $total += $cart['price']; ?>
+                  <?php $total += $cart['price'] * $cart['quantity']; ?>
                <?php endforeach ?>
             <!-- cart mini end -->
 

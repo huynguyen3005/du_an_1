@@ -96,6 +96,6 @@ function check_login()
         }
     }
     $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"]; // tạo session chứa link trang hiện tại
-    header("location: $SITE_URL/login.php");
+    header("location: $SITE_URL/index.php");
 }
 ?>
