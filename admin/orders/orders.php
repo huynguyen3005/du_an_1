@@ -3,12 +3,11 @@ require_once "../dao/order.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = $_POST['status'];
-    $order_id = $_POST['order_id']; 
-    for($i=0;$i<count($order_id);$i++) {
+    $order_id = $_POST['order_id'];
+    for ($i = 0; $i < count($order_id); $i++) {
         update_status_by_order_id($order_id[$i], $status[$i]);
         setcookie("update-orders", "Sửa thành công", time() + 30);
     }
-
 }
 
 $orders = order_select_all();
@@ -20,6 +19,7 @@ $orders = order_select_all();
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">user_id</th>
                         <th scope="col">Order Id</th>
                         <th scope="col">Total Price</th>
                         <th scope="col">Status</th>
@@ -32,7 +32,10 @@ $orders = order_select_all();
                         foreach ($orders as $order) : ?>
                         <tr>
                             <th scope="row"> #
-                                <input type="hidden" name="order_id[]" value="<?= $order['order_id']?>">
+                                <?= $order['user_id'] ?>
+                            </th>
+                            <th scope="row"> #
+                                <input type="hidden" name="order_id[]" value="<?= $order['order_id'] ?>">
                                 <?= $order['order_id'] ?>
                             </th>
                             <td data-info="title">
