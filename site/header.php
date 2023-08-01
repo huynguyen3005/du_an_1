@@ -130,16 +130,13 @@ if (isset($_SESSION['user'])){
                                             <a href="index.php?act=home">Home</a>
                                         </li>
                                         <li class="has-mega-menu">
-                                            <a href="">Shop</a>
-                                        </li>
-                                        <li class="has-mega-menu ">
-                                            <a href="index.php?act=products">Products</a>
-                                        </li>
-                                        <li class="has-mega-menu">
-                                            <a href="index.php?act=blog">Blog</a>
+                                            <a href="index.php?act=products">Shop</a>
                                         </li>
                                         <li class="">
                                             <a href="index.php?act=contact">Contact</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="index.php?act=about">About</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -419,8 +416,8 @@ if (isset($_SESSION['user'])){
                         <div class="col-xl-5 col-lg-7 col-md-7 col-sm-8 col-6">
                             <div class="tp-header-bottom-right d-flex align-items-center justify-content-end pl-30">
                                 <div class="tp-header-search-2 d-none d-sm-block">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search for Products...">
+                                    <form action="index.php?act=products" method="post">
+                                        <input type="text" placeholder="Search for Products..." name="search-box">
                                         <button type="submit">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -435,22 +432,6 @@ if (isset($_SESSION['user'])){
                                     </form>
                                 </div>
                                 <div class="tp-header-action d-flex align-items-center ml-30">
-                                    <div class="tp-header-action-item d-none d-lg-block">
-                                        <a href="compare.html" class="tp-header-action-btn">
-                                            <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.8396 17.3319V3.71411" stroke="currentColor"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M19.1556 13L15.0778 17.0967L11 13" stroke="currentColor"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M4.91115 1.00056V14.6183" stroke="currentColor"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M0.833496 5.09667L4.91127 1L8.98905 5.09667"
-                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </div>
                                     <div class="tp-header-action-item d-none d-lg-block">
                                         <a href="index.php?act=wishlist" class="tp-header-action-btn">
                                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none"

@@ -1,7 +1,12 @@
 <?php
+ob_start();
+require_once "../global.php";
 require_once "../dao/pdo.php";
 require_once "../dao/users.php";
 require_once "../global.php";
+
+check_login();
+
 
 // hearder
 require_once "header.php";
@@ -57,6 +62,14 @@ if (isset($_GET['act'])) {
         case "add-category":
             require_once "categories/add_category.php";
             break;
+
+        // Đơn hàng
+        case "orders":
+            require_once "orders/orders.php";
+            break;
+        case "order-detail":
+            require_once "orders/order_detail.php";
+            break;
         
         default:
             require_once "home.php";
@@ -69,4 +82,23 @@ if (isset($_GET['act'])) {
 
 // footer
 require_once "footer.php";
+ob_end_flush();
 ?>
+
+<!-- JS here -->
+<script src="../site/assets/js/vendor/jquery.js"></script>
+    <script src="../site/assets/js/vendor/waypoints.js"></script>
+    <script src="../site/assets/js/bootstrap-bundle.js"></script>
+    <script src="../site/assets/js/meanmenu.js"></script>
+    <script src="../site/assets/js/swiper-bundle.js"></script>
+    <script src="../site/assets/js/slick.js"></script>
+    <script src="../site/assets/js/range-slider.js"></script>
+    <script src="../site/assets/js/magnific-popup.js"></script>
+    <script src="../site/assets/js/nice-select.js"></script>
+    <script src="../site/assets/js/purecounter.js"></script>
+    <script src="../site/assets/js/countdown.js"></script>
+    <script src="../site/assets/js/wow.js"></script>
+    <script src="../site/assets/js/isotope-pkgd.js"></script>
+    <script src="../site/assets/js/imagesloaded-pkgd.js"></script>
+    <script src="../site/assets/js/ajax-form.js"></script>
+    <script src="../site/assets/js/main.js"></script>

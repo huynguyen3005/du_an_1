@@ -41,5 +41,34 @@ function edit_product_by_id($product_id, $category_id, $name, $quantity, $price,
     return pdo_execute($sql);
 }
 
+function top_selling(){
+    $sql = "SELECT * FROM products order by sold desc limit 4";  
+    return pdo_query($sql);
+}
+
+// filter, search,
+
+function count_all_products_by_keyword($keyword){
+    $sql = "SELECT count(*) as total FROM products inner JOIN categories ON categories.category_id = products.category_id
+    WHERE categories.name LIKE '%$keyword%' OR products.name LIKE '%$keyword%';";
+    return pdo_query_one($sql);
+}
+
+function select_all_products_by_category($category_id,$start,$limit){
+    $sql = "SELECT *  FROM products where category_id = '$category_id' limit $start, $limit;";
+    return pdo_query($sql);
+}
+
+function select_all_products_by_keyword($keyword,$start,$limit){
+    $sql = "SELECT * FROM products inner JOIN categories ON categories.category_id = products.category_id
+    WHERE categories.name LIKE '%$keyword%' OR products.name LIKE '%$keyword%' limit $start, $limit;";
+    return pdo_query($sql);
+}
+
+function select_all_products_filter($filter,$start,$limit){
+    $sql = "SELECT * FROM products order by $filter limit $start, $limit;";
+    return pdo_query($sql);
+}
+
 
 ?>

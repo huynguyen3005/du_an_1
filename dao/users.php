@@ -58,4 +58,10 @@ function update_password($userid, $new_password){
     $sql = "UPDATE users SET password = '$new_password' WHERE user_id = '$userid'";
     pdo_execute($sql);
 }
+
+
+function select_user_by_email($email){
+    $sql = "SELECT * FROM users WHERE email = '$email' ;";
+    return pdo_query($sql);
+}
 ?>

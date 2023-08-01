@@ -31,4 +31,9 @@ function category_delete($id){
     $sql = "DELETE FROM categories WHERE category_id = '$id'";
     pdo_execute($sql);
 }
+
+function category_update($id,$name){
+    $sql = "UPDATE categories SET name = '$name' WHERE category_id = '$id'";
+    pdo_execute($sql);
+}
 ?>
