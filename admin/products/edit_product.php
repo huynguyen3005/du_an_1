@@ -10,6 +10,7 @@ $images = select_img_by_product_id($product_id);
 
 
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // xử lý form thông tin sản phẩm
     if (isset($_POST['edit-info'])) {
@@ -23,30 +24,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (strlen($category) == 0) {
             $message['category'] = 'mời bạn chọn loại hàng';
         }
-    
+
         if (strlen($name) == 0) {
             $message['name'] = 'mời bạn nhập tên sản phẩm';
         }
-    
+
         if (strlen($description) == 0) {
             $message['description'] = "nhập mô tả cho sản phẩm";
         }
-    
+
         if ($price <= 0) {
             $message['price'] = "nhập giá cho sản phẩm";
         }
-    
+
         if ($quantity <= 0) {
             $message['quantity'] = "nhập số lượng cho sản phẩm";
         }
 
-        if(!isset($message)){
-            // edit_product_by_id($product_id, $category, $name, $quantity, $price, $description);
+        if (!isset($message)) {
+            echo $product_id;
+            edit_product_by_id($category, $name, $quantity, $price, $description,$product_id);  
             setcookie("edit-product", "sửa sản phẩm thành công", time() + 30);
             header("location: index.php?act=products");
             die();
         }
-    
     }
 
 
@@ -67,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
-
 }
 
 
@@ -86,16 +86,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="col-md-12">
                 <label for="inputAddress" class="form-label">Đơn giá</label>
-                <input type="number" class="form-control" id="inputAddress" name="price" placeholder="giá"
-                    value="<?= $product['price'] ?>">
+                <input type="number" class="form-control" id="inputAddress" name="price" placeholder="giá" value="<?= $product['price'] ?>">
                 <div class="alert-danger">
                     <?= $message['price'] ?? '' ?>
                 </div>
             </div>
             <div class="col-md-12">
                 <label for="inputAddress" class="form-label">Số lượng</label>
-                <input type="number" class="form-control" id="inputAddress" name="quantity"
-                    value="<?= $product['quantity'] ?>">
+                <input type="number" class="form-control" id="inputAddress" name="quantity" value="<?= $product['quantity'] ?>">
                 <div class="alert-danger">
                     <?= $message['quantity'] ?? '' ?>
                 </div>
@@ -104,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="inputState" class="form-label">Loại hàng</label>
                 <select id="inputState" class="form-select" name="category">
                     <option value="<?= $product_cate['category_id'] ?>" selected><?= $product_cate['name'] ?></option>
-                    <?php foreach ($categories as $category): ?>
+                    <?php foreach ($categories as $category) : ?>
                         <option value="<?= $category['category_id'] ?>"><?= $category['name'] ?></option>
                     <?php endforeach ?>
                 </select>
@@ -118,8 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="col-12">
                 <label for="inputZip" class="form-label">Mô tả</label>
-                <textarea name="description" style="min-height: 200px;" class="form-control" placeholder="mô tả"
-                    id="description"><?= $product['description'] ?></textarea>
+                <textarea name="description" style="min-height: 200px;" class="form-control" placeholder="mô tả" id="description"><?= $product['description'] ?></textarea>
                 <div class="alert-danger">
                     <?= $message['description'] ?? '' ?>
                 </div>
@@ -139,16 +136,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <section class="col">
         <!-- render ảnh -->
         <div class="row g-3">
-            <?php foreach ($images as $image): ?>
+            <?php foreach ($images as $image) : ?>
                 <div class="col-md-3">
                     <div>
-                        <img width="200px" height="360px"
-                            src="../content/img/products/<?php echo $product_id . '/' . $image['img_name'] ?>" alt="#">
+                        <img width="200px" height="260px" src="../content/img/products/<?php echo $product_id . '/' . $image['img_name'] ?>" alt="#">
                     </div>
                     <div class="mt-2">
-                        <a class="mx-auto"
-                            href="images/delete_image.php?product_id=<?= $product_id ?>&img_id=<?= $image['img_id'] ?>"
-                            onclick="return confirm('bạn có muốn xóa ảnh này không')"><button type="button">xóa
+                        <a class="mx-auto" href="images/delete_image.php?product_id=<?= $product_id ?>&img_id=<?= $image['img_id'] ?>" onclick="return confirm('bạn có muốn xóa ảnh này không')"><button type="button" class="btn btn-outline-primary">xóa
                                 ảnh</button></a>
                     </div>
                 </div>
@@ -162,10 +156,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="inputCity" class="form-label">Hình ảnh</label>
             <form action="" method="post" enctype="multipart/form-data">
                 <div id="img-input">
-                    <input id="image-input" type="file" class="form-control" id="inputAnh" name="images[]"
-                        accept="image/*" multiple>
+                    <input id="image-input" type="file" class="form-control" id="inputAnh" name="images[]" accept="image/*" multiple>
                 </div>
-                <button type="submit" name="add-img">thêm ảnh</button>
+                <button type="submit" name="add-img" class="btn btn-outline-primary">thêm ảnh</button>
             </form>
 
             <!-- preview image -->
@@ -182,8 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </section>
 </div>
 <script>
-
-    document.getElementById("image-input").addEventListener("change", function (event) {
+    document.getElementById("image-input").addEventListener("change", function(event) {
         var input = event.target;
         var previewContainer = document.getElementById("preview-container");
 
@@ -194,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         for (var i = 0; i < input.files.length; i++) {
             var reader = new FileReader();
 
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 //tạo thẻ div để chứa img
                 var imgBox = document.createElement("div");
                 imgBox.className = "img-box col-md-3";
@@ -216,5 +208,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         }
     });
-
 </script>
