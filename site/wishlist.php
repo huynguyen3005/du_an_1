@@ -87,7 +87,7 @@ $wishlist = select_wishlist_by_uid($_SESSION['user']['user_id']);
                         <div class="row align-items-end">
                            <div class="col-xl-6 col-md-4">
                               <div class="tp-cart-update">
-                                 <a href="cart.html" class="tp-cart-update-btn">Go To Cart</a>
+                                 <a href="index.php?act=cart" class="tp-cart-update-btn">Go To Cart</a>
                               </div>
                            </div>
                         </div>

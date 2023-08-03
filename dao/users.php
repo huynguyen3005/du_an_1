@@ -64,4 +64,9 @@ function select_user_by_email($email){
     $sql = "SELECT * FROM users WHERE email = '$email' ;";
     return pdo_query($sql);
 }
+
+function update_profile($name, $email, $sex, $phone,$address,$id){
+    $sql = "UPDATE users SET email = '$email' ,sex = '$sex' ,phone_number = '$phone' ,address = '$address' WHERE user_id = '$id' ;";
+    pdo_execute($sql);
+}
 ?>

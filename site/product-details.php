@@ -16,8 +16,8 @@ $category = category_select_by_id($product['category_id']);
 // biến index 
 $index = 0;
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-   if(isset($_POST['comment'])){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+   if (isset($_POST['comment'])) {
       $msg = $_POST['msg'];
       add_comment($msg, $_SESSION['user']['user_id'], $product_id);
    }
@@ -307,29 +307,29 @@ $comments = select_all_comment_by_product($product_id);
                                        <div class="tp-product-details-review-list pr-110">
                                           <h3 class="tp-product-details-review-title">Rating & Review</h3>
                                           <!-- comment list -->
-                                          <?php if(isset($comments)) foreach ($comments as $cm) :?>
-                                          <div class="tp-product-details-review-avater d-flex align-items-start">
-                                             <div class="tp-product-details-review-avater-thumb">
-                                                <a href="#">
-                                                   <img src="../content//img/users/<?= $cm['photo']?>" alt="">
-                                                </a>
-                                             </div>
-                                             <div class="tp-product-details-review-avater-content">
-                                                <div class="tp-product-details-review-avater-rating d-flex align-items-center">
-                                                   <span><i class="fa-solid fa-star"></i></span>
-                                                   <span><i class="fa-solid fa-star"></i></span>
-                                                   <span><i class="fa-solid fa-star"></i></span>
-                                                   <span><i class="fa-solid fa-star"></i></span>
-                                                   <span><i class="fa-solid fa-star"></i></span>
+                                          <?php if (isset($comments)) foreach ($comments as $cm) : ?>
+                                             <div class="tp-product-details-review-avater d-flex align-items-start">
+                                                <div class="tp-product-details-review-avater-thumb">
+                                                   <a href="#">
+                                                      <img src="../content//img/users/<?= $cm['photo'] ?>" alt="">
+                                                   </a>
                                                 </div>
-                                                <h3 class="tp-product-details-review-avater-title"><?= $cm['name']?></h3>
+                                                <div class="tp-product-details-review-avater-content">
+                                                   <div class="tp-product-details-review-avater-rating d-flex align-items-center">
+                                                      <span><i class="fa-solid fa-star"></i></span>
+                                                      <span><i class="fa-solid fa-star"></i></span>
+                                                      <span><i class="fa-solid fa-star"></i></span>
+                                                      <span><i class="fa-solid fa-star"></i></span>
+                                                      <span><i class="fa-solid fa-star"></i></span>
+                                                   </div>
+                                                   <h3 class="tp-product-details-review-avater-title"><?= $cm['name'] ?></h3>
 
-                                                <div class="tp-product-details-review-avater-comment">
-                                                   <p><?= nl2br($cm['comment_content'])?></p>
+                                                   <div class="tp-product-details-review-avater-comment">
+                                                      <p><?= nl2br($cm['comment_content']) ?></p>
+                                                   </div>
                                                 </div>
                                              </div>
-                                          </div>
-                                          <?php endforeach?>
+                                          <?php endforeach ?>
                                           <!-- end comment list -->
                                        </div>
                                     </div>
@@ -370,10 +370,10 @@ $comments = select_all_comment_by_product($product_id);
                                                 $count = count_all_products_sold_by_user_product_id($_SESSION['user']['user_id'], $product_id);
                                                 if ($count) {
                                                    echo '<button type="submit" name="comment" class="tp-product-details-review-btn">Submit</button>';
-                                                }else {
+                                                } else {
                                                    echo '<p class="alert alert-warning">You must order the product to comment</p>';
                                                 }
-                                             }else{
+                                             } else {
                                                 echo '<p class="alert alert-warning">Login to comment</p>';
                                              }
 
@@ -459,6 +459,9 @@ $comments = select_all_comment_by_product($product_id);
       if (login == 0) {
          confirmlogin = confirm("bạn chưa đăng nhập, xin hãy đăng nhập để thêm sản phẩm vào giở hàng");
          if (confirmlogin == true) {
+            <?php
+            $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
+            ?>
             window.location.href = "index.php?act=login";
             return false;
          }

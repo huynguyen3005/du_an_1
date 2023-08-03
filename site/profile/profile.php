@@ -38,7 +38,7 @@ if (!isset($_SESSION['user'])) {
                   <div class="profile__tab mr-40">
                      <nav>
                         <div class="nav nav-tabs tp-tab-menu flex-column" id="profile-tab" role="tablist">
-                           <a class="nav-link <?php if(isset($_GET['profile'])){ if($_GET['profile'] == 'main' || $_GET['profile'] == ""){echo 'active' ;} else{echo "";}}?>"
+                           <a class="nav-link <?php if(isset($_GET['profile'])){ if($_GET['profile'] == 'main' || $_GET['profile'] == false){echo 'active' ;} else{echo "";}}?>"
                               href="index.php?act=profile&profile=main"><button  type="button"><span><i
                                        class="fa-regular fa-user-pen"></i></span>Profile</button></a>
                            <a class="nav-link <?php if(isset($_GET['profile'])){ if($_GET['profile'] == 'info'){echo 'active' ;} else{echo "";}}?>" href="index.php?act=profile&profile=info"><button class="" id=""
