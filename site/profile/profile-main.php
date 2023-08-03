@@ -2,6 +2,13 @@
 require_once "../dao/order.php";
 require_once "../dao/wishlist.php";
 
+if (isset($_COOKIE['edit-profile'])) {
+   echo '<div class="alert alert-success" role="alert">
+           ' . $_COOKIE['edit-profile'] . '
+         </div>
+   ';
+}
+
 if(isset($_SESSION['user'])){
    $count_order = count_order_by_user($_SESSION['user']['user_id']);
    $count_wishlist = count_wishlist($_SESSION['user']['user_id']);

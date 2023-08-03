@@ -1,6 +1,10 @@
 <?php
 require_once 'pdo.php';
 
+function count_all_order(){
+    $sql = "SELECT count(*) as total FROM orders ;";
+    return pdo_query_one($sql);
+}
 function add_order($date, $user_id, $total_price, $address, $note, $shipping ){
     $sql = "INSERT INTO orders (order_date, order_status, user_id, total_price, address, note, shipping) VALUES
     ('$date',b'0','$user_id','$total_price','$address','$note', '$shipping');";
@@ -39,6 +43,21 @@ function update_status_by_order_id($order_id, $status){
     $sql = "UPDATE orders SET order_status = b'$status' WHERE order_id = '$order_id';";
     pdo_execute($sql);
 
+}
+
+function order_select_by_page($start,$limit){
+    $sql = "SELECT * FROM orders LIMIT $start, $limit ;";
+    return pdo_query($sql);
+}
+
+function select_all_order_by_keyword($keyword,$start,$limit){
+    $sql = "SELECT * FROM orders WHERE order_id LIKE '%$keyword%' OR user_id LIKE '%$keyword%' limit $start, $limit;";
+    return pdo_query($sql);
+}
+
+function count_all_order_by_keyword($keyword){
+    $sql = "SELECT count(*) as total FROM orders WHERE order_id LIKE '%$keyword%' OR user_id LIKE '%$keyword%';";
+    return pdo_query_one($sql);
 }
 ?>
 

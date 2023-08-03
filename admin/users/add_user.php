@@ -119,8 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Giới tính</label>
             <select class="form-select" name="sex">
-                <option value="nam">nam</option>
-                <option value="nữ" selected>nữ</option>
+                <option value="Male">Male</option>
+                <option value="Famate" selected>Famate</option>
             </select>
             <div class="<?= isset($message['sex']) ? 'alert' : ''?> alert-danger">
                 <?= $message['sex'] ?? '' ?>

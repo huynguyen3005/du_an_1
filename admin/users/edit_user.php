@@ -3,6 +3,7 @@ require_once "../dao/users.php";
 $user_id = $_GET['user_id'];
 $user = select_one_user($user_id);
 
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['email'];
     $name = $_POST['name'];
@@ -85,8 +86,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Giới tính</label>
             <select class="form-select" name="sex">
-                <option value="nam" <?php if($user['sex']  == "nam") {echo 'selected';}else{echo '';}?>>nam</option>
-                <option value="nữ" <?php if($user['sex']  == "nữ") {echo 'selected';}else{echo '';}?>>nữ</option>
+                <option value="nam" <?php if($user['sex']  == "Male") {echo 'selected';}else{echo '';}?>>Male</option>
+                <option value="nữ" <?php if($user['sex']  == "Famate") {echo 'selected';}else{echo '';}?>>Famate</option>
             </select>
             <div class="<?= isset($message['sex']) ? 'alert' : '' ?> alert-danger">
                 <?= $message['sex'] ?? '' ?>
