@@ -92,9 +92,9 @@ if (isset($_COOKIE['delete-user'])) {
                 </th>
                 <th scope="col">
                     <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button
-                            class="button">Sửa</button></a>
+                            class="btn btn-outline-primary">Sửa</button></a>
                     <a onclick="return confirm('Bạn có muón xóa khách hàng này không')"
-                        href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="button">Xóa</button></a>
+                        href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Xóa</button></a>
                 </th>
             </tr>
         <?php endforeach ?>

@@ -246,7 +246,7 @@ if (strpos($currenturl, '&page_no') !== false) {
                                  </ul>
                               </div>
                               <div class="tp-shop-top-result">
-                                 <p>Showing 1–14 of 26 results</p>
+                                 <p>Showing <?= $result['total']?> results</p>
                               </div>
                            </div>
                         </div>
@@ -444,8 +444,12 @@ if (strpos($currenturl, '&page_no') !== false) {
                               <?php
                               for($i=0;$i<$total_page;$i++) {
                                  echo '
-                                 <a href="'.$newurl.'&page_no'.($i+1).'"><li>
-                                 <span class="current">'.($i+1).'</span>
+                                 <a href="'.$newurl.'&page_no='.($i+1).'"><li>
+                                 <span class="';
+                                 if(($i+1) == $current_page){
+                                    echo 'current';
+                                 };
+                                 echo '">'.($i+1).'</span>
                                   </li></a>
                                  ';
                               }                            

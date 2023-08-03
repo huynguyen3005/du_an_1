@@ -2,6 +2,7 @@
 require_once "../dao/cart.php";
 require_once "../dao/order.php";
 require_once "../dao/order_carts.php";
+require_once "../dao/products.php";
 if (isset($_SESSION['user'])) {
    $carts = select_cart_by_user_id($_SESSION['user']['user_id']);
 
@@ -40,7 +41,9 @@ if (isset($_SESSION['user'])) {
             add_order_cart($cart['cart_id'], $order_id);
             foreach($carts as $cart) {
                cart_update_status($cart['cart_id']);
+               update_product_after_order($cart['product_id'],$cart['quantity']);
             }
+            header("location: index.php?act=profile&profile=order");
          }
       }
    }

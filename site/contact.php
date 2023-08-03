@@ -1,3 +1,43 @@
+<?php
+require_once "../dao/contacts.php";
+
+// hiện cookie
+if (isset($_COOKIE['add-contact'])) {
+  echo '<div class="alert alert-success" role="alert">
+          ' . $_COOKIE['add-contact'] . '
+        </div>
+  ';
+}
+
+if (isset($_POST['send-msg'])) {
+  $email = $_POST['email'];
+  $name = $_POST['name'];
+  $subject = $_POST['subject'];
+  $msg = $_POST['message'];
+
+
+  // validate the form
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $message['email'] = 'Please enter the correct email format';
+  }
+  if (strlen($name) == 0) {
+    $message['name'] = 'Please enter your name';
+  }
+  if (strlen($subject) == 0) {
+    $message['subject'] = "Please enter subject";
+  }
+  if (strlen($msg) == 0) {
+    $message['msg'] = "Please enter your message";
+  }
+
+  if (!isset($message)) {
+
+    add_contact($email, $name, $subject, $msg);
+    setcookie("add-contact", "submitted successfully", time() + 30);
+  }
+}
+?>
+
 <main>
   <!-- breadcrumb area start -->
   <section class="breadcrumb__area include-bg text-center pt-95 pb-50">
@@ -27,78 +67,60 @@
               <h3 class="tp-contact-title">Sent A Message</h3>
 
               <div class="tp-contact-form">
-                <form
-                  id="contact-form"
-                  action="https://weblearnbd.net/tphtml/shofy-prv/shofy/assets/mail.php"
-                  method="POST"
-                >
+                <!-- form start -->
+                <form action="" method="POST">
                   <div class="tp-contact-input-wrapper">
                     <div class="tp-contact-input-box">
                       <div class="tp-contact-input">
-                        <input
-                          name="name"
-                          id="name"
-                          type="text"
-                          placeholder="Shahnewaz Sakil"
-                        />
+                        <input name="name" id="name" type="text" placeholder="Shahnewaz Sakil" />
                       </div>
                       <div class="tp-contact-input-title">
                         <label for="name">Your Name</label>
                       </div>
                     </div>
+                    <div class="<?= isset($message['name']) ? 'alert' : '' ?> alert-danger">
+                      <?= $message['name'] ?? '' ?>
+                    </div>
                     <div class="tp-contact-input-box">
                       <div class="tp-contact-input">
-                        <input
-                          name="email"
-                          id="email"
-                          type="email"
-                          placeholder="shofy@mail.com"
-                        />
+                        <input name="email" id="email" type="email" placeholder="shofy@mail.com" />
                       </div>
                       <div class="tp-contact-input-title">
                         <label for="email">Your Email</label>
                       </div>
                     </div>
+                    <div class="<?= isset($message['email']) ? 'alert' : '' ?> alert-danger">
+                      <?= $message['email'] ?? '' ?>
+                    </div>
                     <div class="tp-contact-input-box">
                       <div class="tp-contact-input">
-                        <input
-                          name="subject"
-                          id="subject"
-                          type="text"
-                          placeholder="Write your subject"
-                        />
+                        <input name="subject" id="subject" type="text" placeholder="Write your subject" />
                       </div>
                       <div class="tp-contact-input-title">
                         <label for="subject">Subject</label>
                       </div>
                     </div>
+                    <div class="<?= isset($message['subject']) ? 'alert' : '' ?> alert-danger">
+                      <?= $message['subject'] ?? '' ?>
+                    </div>
                     <div class="tp-contact-input-box">
                       <div class="tp-contact-input">
-                        <textarea
-                          id="message"
-                          name="message"
-                          placeholder="Write your message here..."
-                        ></textarea>
+                        <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
                       </div>
                       <div class="tp-contact-input-title">
                         <label for="message">Your Message</label>
                       </div>
                     </div>
-                  </div>
-                  <div class="tp-contact-suggetions mb-20">
-                    <div class="tp-contact-remeber">
-                      <input id="remeber" type="checkbox" />
-                      <label for="remeber"
-                        >Save my name, email, and website in this browser for
-                        the next time I comment.</label
-                      >
+                    <div class="<?= isset($message['msg']) ? 'alert' : '' ?> alert-danger">
+                      <?= $message['msg'] ?? '' ?>
                     </div>
                   </div>
                   <div class="tp-contact-btn">
-                    <button type="submit">Send Message</button>
+                    <button type="submit" name="send-msg">Send Message</button>
                   </div>
                 </form>
-                <p class="ajax-response"></p>
+                <!-- form end -->
+                <!-- <p class="ajax-response"></p> -->
               </div>
             </div>
           </div>
@@ -127,10 +149,7 @@
                 </div>
                 <div class="tp-contact-info-content">
                   <p>
-                    <a
-                      href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.6976637,-74.1197638,11z/data=!3m1!4b1!4m6!3m5!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728!16zL20vMDJfMjg2"
-                      target="_blank"
-                    >
+                    <a href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.6976637,-74.1197638,11z/data=!3m1!4b1!4m6!3m5!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728!16zL20vMDJfMjg2" target="_blank">
                       84 sleepy hollow st. <br />
                       jamaica, New York 1432
                     </a>

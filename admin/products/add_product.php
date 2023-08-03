@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quantity = $_POST['quantity'];
 
     $images = $_FILES['images'];
+    $sold = 0 ;
 
 
     // check file ảnh

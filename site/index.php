@@ -28,6 +28,7 @@ require_once "../global.php";
     <link rel="stylesheet" href="assets/css/flaticon_shofy.css">
     <link rel="stylesheet" href="assets/css/spacing.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>

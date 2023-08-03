@@ -197,7 +197,7 @@
                                              </div>
                                              <div class="tp-product-content-2 pt-15">
                                                  <div class="tp-product-tag-2">
-                                                     <a href="#">Whitetails Store</a>
+                                                 <a href="index.php?act=products&category=<?= $product['category_id'] ?>"><?= category_select_by_id($product['category_id'])['name'] ?></a>
                                                  </div>
                                                  <h3 class="tp-product-title-2">
                                                      <a href="index.php?act=product-details&product_id=<?= $product['product_id'] ?>"><?= $product['name'] ?? '' ?></a>
