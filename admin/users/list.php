@@ -35,9 +35,34 @@ if (isset($_COOKIE['delete-user'])) {
     ';
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['search'])) {
+        $keyword = $_POST['keyword'];
+        $total_users = count_all_users_by_keyword($keyword);
+        $total_page = ceil($total_users['total'] / $limit);
+        if ($page_number <= 1) {
+            $page_number = 1;
+        }
+        if ($page_number >= $total_page) {
+            $page_number = $total_page;
+        }
+        $start = ($page_number - 1) * $limit;
+
+        $users = select_all_user_by_keyword($keyword, $start, $limit);
+    }
+}
 
 ?>
 
+<!-- search box -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <form class="d-flex" action="" method="post">
+            <input name="keyword" class="form-control me-2" type="search" placeholder="Search user-id, name" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" name="search">Search</button>
+        </form>
+    </div>
+</nav>
 
 
 <!-- users -->
@@ -58,7 +83,7 @@ if (isset($_COOKIE['delete-user'])) {
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($users as $user): ?>
+        <?php foreach ($users as $user) : ?>
             <tr>
                 <th scope="col">
                     <input class="form-check-input" type="checkbox" value="<?= $user['user_id'] ?>" name="check_hh">
@@ -91,10 +116,8 @@ if (isset($_COOKIE['delete-user'])) {
                     <?= $user['type'] == 1 ? 'admin' : 'khách hàng' ?>
                 </th>
                 <th scope="col">
-                    <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button
-                            class="btn btn-outline-primary">Sửa</button></a>
-                    <a onclick="return confirm('Bạn có muón xóa khách hàng này không')"
-                        href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Xóa</button></a>
+                    <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Sửa</button></a>
+                    <a onclick="return confirm('Bạn có muón xóa khách hàng này không')" href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Xóa</button></a>
                 </th>
             </tr>
         <?php endforeach ?>
@@ -107,11 +130,11 @@ if (isset($_COOKIE['delete-user'])) {
         <a class="mx-2" href="index.php?act=users&page=1">|&lt;</a>
         <a class="mx-2" href="index.php?act=users&page=<?= $page_number - 1 ?>">&lt;&lt;</a>
         <div class="btn-group me-2" role="group" aria-label="First group">
-        <?php
-        for ($i = 0; $i < $total_page; $i++) {
-            echo '<a id="page'.($i+1).'" class="mx-2" href="index.php?act=users&page=' . ($i + 1) . '"><button type="button" class="btn btn-primary">'.($i+1).'</button></a>';
-        }
-        ?>
+            <?php
+            for ($i = 0; $i < $total_page; $i++) {
+                echo '<a id="page' . ($i + 1) . '" class="mx-2" href="index.php?act=users&page=' . ($i + 1) . '"><button type="button" class="btn btn-primary">' . ($i + 1) . '</button></a>';
+            }
+            ?>
         </div>
         <a class="mx-2" href="index.php?act=users&page=<?= $page_number + 1 ?>">&gt;&gt;</a>
         <a class="mx-2" href="index.php?act=users&page=<?= $total_page ?>">&gt;|</a>
@@ -135,7 +158,7 @@ if (isset($_COOKIE['delete-user'])) {
 <!-- js -->
 
 <script>
-    document.getElementById('page<?= $page_number?>').style.border = "2px solid green";
+    document.getElementById('page<?= $page_number ?>').style.border = "2px solid green";
     var checkBox = document.getElementsByClassName('form-check-input');
     var checkAll = document.getElementById('check-all');
     var uncheck = document.getElementById('uncheck');
@@ -149,7 +172,7 @@ if (isset($_COOKIE['delete-user'])) {
     }
 
     checkAll.addEventListener('click', check);
-    uncheck.addEventListener('click', function () {
+    uncheck.addEventListener('click', function() {
         for (var i in checkBox) {
             if (checkBox[i].checked = "true") {
                 checkBox[i].checked = false;

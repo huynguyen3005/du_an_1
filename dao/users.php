@@ -66,7 +66,17 @@ function select_user_by_email($email){
 }
 
 function update_profile($name, $email, $sex, $phone,$address,$id){
-    $sql = "UPDATE users SET email = '$email' ,sex = '$sex' ,phone_number = '$phone' ,address = '$address' WHERE user_id = '$id' ;";
+    $sql = "UPDATE users SET name = '$name', email = '$email' ,sex = '$sex' ,phone_number = '$phone' ,address = '$address' WHERE user_id = '$id' ;";
     pdo_execute($sql);
+}
+
+function count_all_users_by_keyword($keyword){
+    $sql = "SELECT count(*) as total FROM users WHERE user_id like '%$keyword%' or name like '%$keyword%' or email like '%$keyword%' ;";
+    return pdo_query_one($sql);
+}
+
+function select_all_user_by_keyword($keyword, $start, $limit){
+    $sql =  "SELECT * FROM users WHERE user_id like '%$keyword%' or name like '%$keyword%' or email like '%$keyword%' ;";
+    return pdo_query($sql);
 }
 ?>

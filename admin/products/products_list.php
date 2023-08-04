@@ -49,9 +49,34 @@ $start = ($page_number - 1) * $limit;
 
 $products = select_products_by_page($start, $limit);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['search'])) {
+        $keyword = $_POST['keyword'];
+        $total_products = count_all_products_by_keyword($keyword);
+        $total_page = ceil($total_products['total'] / $limit);
+        if ($page_number <= 1) {
+            $page_number = 1;
+        }
+        if ($page_number >= $total_page) {
+            $page_number = $total_page;
+        }
+        $start = ($page_number - 1) * $limit;
+
+        $products = select_all_products_by_keyword($keyword,$start,$limit);
+    }
+}
 
 ?>
 
+<!-- search box -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <form class="d-flex" action="" method="post">
+            <input name="keyword" class="form-control me-2" type="search" placeholder="Search category, product name" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" name="search">Search</button>
+        </form>
+    </div>
+</nav>
 
 <table class="table">
     <thead>
