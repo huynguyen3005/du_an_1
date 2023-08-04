@@ -52,7 +52,7 @@ $categories = categorie_select_by_page($start, $limit);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($categories as $category): ?>
+            <?php foreach ($categories as $category) : ?>
                 <tr>
                     <td><input class="checkbox" type="checkbox" value=""></td>
                     <td>
@@ -62,10 +62,8 @@ $categories = categorie_select_by_page($start, $limit);
                         <?= $category['name'] ?>
                     </td>
                     <td>
-                        <a
-                            href="index.php?act=edit-category&category_id=<?= $category['category_id'] ?>"><button>Sửa</button></a>
-                        <a onclick="return confirm('Bạn có muốn xóa loại hàng không')"
-                            href="categories/delete_category.php?category_id=<?= $category['category_id'] ?>"><button>Xóa</button></a>
+                        <a class="btn btn-outline-primary" href="index.php?act=edit-category&category_id=<?= $category['category_id'] ?>"><button>Sửa</button></a>
+                        <a class="btn btn-outline-primary" onclick="return confirm('Bạn có muốn xóa loại hàng không')" href="categories/delete_category.php?category_id=<?= $category['category_id'] ?>"><button>Xóa</button></a>
                     </td>
                 </tr>
             <?php endforeach ?>
