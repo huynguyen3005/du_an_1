@@ -12,3 +12,13 @@
 .img-box img {
     width: 100%;
 }
+
+.img-order-detail{
+    overflow: hidden;
+    height: 5000px;
+}
+
+.tp-order-details-icon span {
+    overflow: hidden;
+    max-width: 30px;
+}

@@ -79,4 +79,9 @@ function select_all_user_by_keyword($keyword, $start, $limit){
     $sql =  "SELECT * FROM users WHERE user_id like '%$keyword%' or name like '%$keyword%' or email like '%$keyword%' ;";
     return pdo_query($sql);
 }
+
+function update_photo($photo, $user_id){
+    $sql = "UPDATE users SET photo = ? WHERE user_id = ? ;";
+    pdo_execute($sql,$photo,$user_id);
+}
 ?>

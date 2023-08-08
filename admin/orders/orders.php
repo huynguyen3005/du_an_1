@@ -1,5 +1,6 @@
 <?php
 require_once "../dao/order.php";
+require_once "../dao/users.php";
 
 // phân trang
 $page_number = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -64,8 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">user_id</th>
-                        <th scope="col">Order Id</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">User Email</th>
+                        <th scope="col">Date Ordered</th>
                         <th scope="col">Total Price</th>
                         <th scope="col">Status</th>
                         <th scope="col">View</th>
@@ -76,13 +78,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php if (isset($orders))
                         foreach ($orders as $order) : ?>
                         <tr>
-                            <th scope="row"> #
-                                <?= $order['user_id'] ?>
-                            </th>
-                            <th scope="row"> #
+                            <td scope="row">
+                                <?= select_one_user($order['user_id'])['name'] ?>
+                            </td>
+                            <td scope="row">
                                 <input type="hidden" name="order_id[]" value="<?= $order['order_id'] ?>">
-                                <?= $order['order_id'] ?>
-                            </th>
+                                <?= select_one_user($order['user_id'])['email'] ?>
+                            </td>
+                            <td data-info="title">
+                                <?= $order['order_date'] ?>
+                            </td>
                             <td data-info="title">
                                 <?= number_format($order['total_price']) ?>
                             </td>
