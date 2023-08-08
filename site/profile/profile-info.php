@@ -36,6 +36,7 @@ if (isset($_POST['update-user'])) {
     if (!isset($message)) {
         
         update_profile($name, $email, $sex, $phone,$address,$_SESSION['user']['user_id']);
+        $_SESSION['user'] = select_one_user($_SESSION['user']['user_id']);
         // $insertedId = pdo_insertedId();
         setcookie("edit-profile", "edit profile successfully", time() + 30 ,'/');
         header("location: index.php?act=profile");

@@ -22,7 +22,7 @@ function select_order_by_id($order_id){
 }
 
 function select_all_cart_by_order_id($order_id){
-    $sql = "SELECT cart.* , products.price FROM `orders` INNER JOIN order_carts on orders.order_id = order_carts.order_id
+    $sql = "SELECT cart.* , products.price , products.product_id FROM `orders` INNER JOIN order_carts on orders.order_id = order_carts.order_id
     INNER join cart on order_carts.cart_id = cart.cart_id inner join product_variants on cart.variant_id = product_variants.variant_id
     INNER JOIN products ON product_variants.product_id = products.product_id
     WHERE orders.order_id = '$order_id';";  
