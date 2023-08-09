@@ -82,14 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <thead>
         <tr>
             <th scope="col"><button>All</button></th>
-            <th scope="col">MÃ SP</th>
-            <th scope="col">TÊN SP</th>
-            <th scope="col">LOẠI</th>
-            <th scope="col">GIÁ</th>
-            <th scope="col">SỐ LƯỢNG</th>
-            <th scope="col">NGÀY NHẬP</th>
-            <th scope="col">ĐÃ BÁN</th>
-            <th scope="col">TÙY CHỌN</th>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Sold</th>
+            <th scope="col">Optional</th>
         </tr>
     </thead>
     <tbody>
@@ -120,8 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?= $product['sold'] ?>
                 </th>
                 <th scope="col">
-                    <a href="index.php?act=edit_product&product_id=<?= $product['product_id'] ?>"><button class="btn btn-outline-primary">Sửa</button></a>
-                    <a onclick="return confirm('Bạn có muốn xóa hàng này không')" href="products/delete_product.php?product_id=<?= $product['product_id'] ?>"><button class="btn btn-outline-primary">Xóa</button></a>
+                    <a href="index.php?act=edit_product&product_id=<?= $product['product_id'] ?>"><button class="btn btn-outline-primary">Edit</button></a>
+                    <a onclick="return confirm('Bạn có muốn xóa hàng này không')" href="products/delete_product.php?product_id=<?= $product['product_id'] ?>"><button class="btn btn-outline-primary">Delete</button></a>
                 </th>
             </tr>
         <?php endforeach ?>
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <section class="mt-1">
     <div class="button">
-        <a href="index.php?act=add-product"><button type="button" class="btn btn-outline-primary">Nhập thêm</button></a>
+        <a href="index.php?act=add-product"><button type="button" class="btn btn-outline-primary">Add new</button></a>
     </div>
 </section>
 

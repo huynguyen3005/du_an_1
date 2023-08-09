@@ -51,7 +51,8 @@ function order_select_by_page($start,$limit){
 }
 
 function select_all_order_by_keyword($keyword,$start,$limit){
-    $sql = "SELECT * FROM orders WHERE order_id LIKE '%$keyword%' OR user_id LIKE '%$keyword%' limit $start, $limit;";
+    $sql = "SELECT * FROM orders inner join users on orders.user_id = users.user_id WHERE orders.order_id LIKE '%$keyword%' OR orders.user_id LIKE '%$keyword%' 
+    or users.name like '%$keyword%' or users.email like '%$keyword%' limit $start, $limit;";
     return pdo_query($sql);
 }
 

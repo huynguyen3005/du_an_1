@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <!-- form image -->
                   <form id="form-image" action="" method="post" enctype="multipart/form-data">
                      <div class="profile__main-thumb">
-                        <img src="../content/img/users/<?= $_SESSION['user']['photo'] ?? '' ?>" alt="">
+                        <img src="../content/img/users/<?= !empty($_SESSION['user']['photo']) ? $_SESSION['user']['photo'] : 'user123455.png'?>" alt=""> 
                         <div class="profile__main-thumb-edit">
                            <input id="profile-thumb-input" class="profile-img-popup" type="file" name="image" accept="image/*">
                            <label for="profile-thumb-input"><i class="fa-light fa-camera"></i></label>

@@ -19,7 +19,7 @@ if (count($imgs) > 0) {
 }
 
 delele_product_by_id($product_id);
-setcookie('delete-product', "đã xóa sản phẩm xong", time() + 30);
+setcookie('delete-product', "Deleted product sucessfully", time() + 30);
 header("location: ../index.php?act=products");
 die();
 // ?>

@@ -19,7 +19,6 @@ $start = ($page_number - 1) * $limit;
 
 $orders = order_select_by_page($start, $limit);
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['update'])) {
         $status = $_POST['status'];
@@ -28,21 +27,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             update_status_by_order_id($order_id[$i], $status[$i]);
             setcookie("update-orders", "Sửa thành công", time() + 30);
         }
+        $orders = order_select_by_page($start, $limit);
     } else if (isset($_POST['search'])) {
         $keyword = $_POST['keyword'];
         $total_orders = count_all_order_by_keyword($keyword);
         $total_page = ceil($total_orders['total'] / $limit);
-        if ($page_number <= 1) {
-            $page_number = 1;
+        if ($total_page == 0) {
+            $total_page = 1;
         }
         if ($page_number >= $total_page) {
             $page_number = $total_page;
         }
+        if ($page_number <= 1) {
+            $page_number = 1;
+        }
+        
         $start = ($page_number - 1) * $limit;
 
-        $orders = select_all_order_by_keyword($keyword,$start,$limit);
+        try {
+            $orders = select_all_order_by_keyword($keyword, $start, $limit);
+        } catch (PDOException $e) {
+            echo '<span style="color: red;">no result</span>';
+        }
     }
 }
+
 
 
 
@@ -53,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <form class="d-flex" action="" method="post">
-            <input name="keyword" class="form-control me-2" type="search" placeholder="Search user-id, order-id" aria-label="Search">
+            <input name="keyword" class="form-control me-2" type="search" placeholder="Search user_name,email user-id, order-id" aria-label="Search">
             <button class="btn btn-outline-success" type="submit" name="search">Search</button>
         </form>
     </div>
@@ -104,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </tbody>
             </table>
             <div class="mt-1">
-                <button name="update" type="submit" class="btn btn-outline-primary">Update danh sách</button>
+                <button name="update" type="submit" class="btn btn-outline-primary">Update List</button>
             </div>
         </form>
     </div>

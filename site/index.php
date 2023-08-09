@@ -93,6 +93,10 @@ require_once "../global.php";
             case "about":
                 require_once "about.php";
                 break;
+            // 404
+            case "404":
+                require_once "404.php";
+                break;
 
             default:
                 require_once "home.php";
