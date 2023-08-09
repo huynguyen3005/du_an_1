@@ -29,10 +29,10 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link green" aria-current="page" href="index.php?act=home">Home</a>
-                    <a class="nav-link light" href="index.php?act=products">Sản phẩm</a>
-                    <a class="nav-link light" href="index.php?act=users">Người dùng</a>
-                    <a class="nav-link light" href="index.php?act=categories">Loại hàng</a>
-                    <a class="nav-link light" href="index.php?act=orders">Đơn hàng</a>
+                    <a class="nav-link light" href="index.php?act=products">Products</a>
+                    <a class="nav-link light" href="index.php?act=users">Users</a>
+                    <a class="nav-link light" href="index.php?act=categories">Categories</a>
+                    <a class="nav-link light" href="index.php?act=orders">Orders</a>
                 </div>
             </div>
         </div>

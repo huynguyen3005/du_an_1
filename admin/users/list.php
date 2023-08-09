@@ -71,15 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">MÃ KH</th>
-            <th scope="col">HỌ VÀ TÊN</th>
-            <th scope="col">ĐỊA CHỈ EMAIL</th>
-            <th scope="col">HÌNH ẢNH</th>
-            <th scope="col">GIỚI TÍNH</th>
-            <th scope="col">PHONE</th>
-            <th scope="col">NGÀY ĐĂNG KÝ</th>
-            <th scope="col">VAI TRÒ</th>
-            <th scope="col">TÙY CHỌN</th>
+            <th scope="col">USER ID</th>
+            <th scope="col">FULL NAME</th>
+            <th scope="col">EMAIL ADDRESS</th>
+            <th scope="col">PHOTO</th>
+            <th scope="col">GENDER</th>
+            <th scope="col">PHONE NUMBER</th>
+            <th scope="col">REGISTRATION DATE</th>
+            <th scope="col">ROLE</th>
+            <th scope="col">CUSTOM</th>
         </tr>
     </thead>
     <tbody>
@@ -116,8 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?= $user['type'] == 1 ? 'admin' : 'khách hàng' ?>
                 </th>
                 <th scope="col">
-                    <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Sửa</button></a>
-                    <a onclick="return confirm('Bạn có muón xóa khách hàng này không')" href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Xóa</button></a>
+                    <a href="index.php?act=edit_user&user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Edit</button></a>
+                    <a onclick="return confirm('Bạn có muón xóa khách hàng này không')" href="users/delete_user.php?user_id=<?= $user['user_id'] ?>"><button class="btn btn-outline-primary">Delete</button></a>
                 </th>
             </tr>
         <?php endforeach ?>
@@ -144,10 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <section class="mt-1">
     <div class="button">
-        <button type="submit" id="check-all" class="btn btn-outline-primary">Chọn tất cả</button>
-        <button type="button" id="uncheck" class="btn btn-outline-primary">Bỏ chọn tất cả</button>
-        <button type="button" class="btn btn-outline-primary">Xóa các mục chọn</button>
-        <a href="index.php?act=add-user"><button type="button" class="btn btn-outline-primary">Nhập thêm</button></a>
+        <a href="index.php?act=add-user"><button type="button" class="btn btn-outline-primary">Add New</button></a>
     </div>
 </section>
 

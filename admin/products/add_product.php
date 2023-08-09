@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $file_ext = pathinfo($image, PATHINFO_EXTENSION);
             $check_img = in_array($file_ext, $img);
             if (!$check_img) {
-                $message['image'] = "file không phải ảnh";
+                $message['image'] = "The file is not an image";
             }
         }
 
@@ -34,35 +34,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!isset($message['image'])) {
             foreach ($images['size'] as $img_size) {
                 if ($img_size > 2000000) {
-                    $message['image'] = "file ảnh quá lớn";
+                    $message['image'] = "file is too large";
                 }
             }
         }
 
     } else {
-        $message['image'] = "mời bạn thêm file ảnh cho sản phẩm";
+        $message['image'] = "Please add image file";
     }
 
 
 
     if (strlen($category) == 0) {
-        $message['category'] = 'mời bạn chọn loại hàng';
+        $message['category'] = 'Please choose category';
     }
 
     if (strlen($name) == 0) {
-        $message['name'] = 'mời bạn nhập tên sản phẩm';
+        $message['name'] = 'Please enter product name';
     }
 
     if (strlen($description) == 0) {
-        $message['description'] = "nhập mô tả cho sản phẩm";
+        $message['description'] = "Please enter product description";
     }
 
     if ($price <= 0) {
-        $message['price'] = "nhập giá cho sản phẩm";
+        $message['price'] = "Please enter product price";
     }
 
     if ($quantity <= 0) {
-        $message['quantity'] = "nhập số lượng cho sản phẩm";
+        $message['quantity'] = "Please enter product quantity";
     }
 
     if (!isset($message)) {
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             add_image($images['name'][$i], $product_id);
         }
 
-        setcookie("add-product", "thêm sản phẩm thành công", time() + 30);
+        setcookie("add-product", "added product sucessfully", time() + 30);
         header("location: index.php?act=products");
         die();
     }
@@ -87,28 +87,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section class="form">
     <form class="row g-3" method="post" action="" enctype="multipart/form-data">
         <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Tên hàng hóa</label>
+            <label for="inputPassword4" class="form-label">Product name</label>
             <input type="text" class="form-control" id="inputPassword4" name="name">
             <div class="<?= isset($message['name']) ? "alert" : "" ?> alert-danger">
                 <?= $message['name'] ?? '' ?>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Đơn giá</label>
+            <label for="inputAddress" class="form-label">Price</label>
             <input type="number" class="form-control" id="inputAddress" name="price" placeholder="">
             <div class="<?= isset($message['price']) ? "alert" : "" ?> alert-danger">
                 <?= $message['price'] ?? '' ?>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Số lượng</label>
+            <label for="inputAddress" class="form-label">Quantity</label>
             <input type="number" class="form-control" id="inputAddress" name="quantity" placeholder="">
             <div class="<?= isset($message['quantity']) ? "alert" : "" ?> alert-danger">
                 <?= $message['quantity'] ?? '' ?>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputState" class="form-label">Loại hàng</label>
+            <label for="inputState" class="form-label">Category</label>
             <select id="inputState" class="form-select" name="category">
                 <option value="" selected>Choose...</option>
                 <?php foreach ($categories as $category): ?>
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputCity" class="form-label">Hình ảnh</label>
+            <label for="inputCity" class="form-label">Image</label>
             <div id="img-input">
                 <input id="image-input" type="file" class="form-control" id="inputAnh" name="images[]" accept="image/*"
                     multiple>
@@ -140,8 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div id="message-container"></div>
 
         <div class="col-12">
-            <label for="inputZip" class="form-label">Mô tả</label>
-            <textarea name="description" style="min-height: 200px;" class="form-control" placeholder="mô tả"
+            <label for="inputZip" class="form-label">Description</label>
+            <textarea name="description" style="min-height: 200px;" class="form-control" placeholder="description"
                 id="description"></textarea>
             <div class="<?= isset($message['description']) ? "alert" : "" ?> alert-danger">
                 <?= $message['description'] ?? '' ?>
@@ -151,9 +151,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- button -->
         <div class="button">
-            <button type="submit" class="btn btn-outline-primary">Thêm mới</button>
-            <button type="reset" class="btn btn-outline-primary">Nhập lại</button>
-            <a href="index.php?act=products"><button type="button" class="btn btn-outline-primary">Danh sách</button></a>
+            <button type="submit" class="btn btn-outline-primary">Add new</button>
+            <button type="reset" class="btn btn-outline-primary">Retype</button>
+            <a href="index.php?act=products"><button type="button" class="btn btn-outline-primary">Products list</button></a>
         </div>
     </form>
 </section>
@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 imgBox.appendChild(image);
                 if (i == 0) {
                     var anhBia = document.createElement("p");
-                    anhBia.innerHTML = "ảnh bìa"
+                    anhBia.innerHTML = "Cover image"
                     imgBox.appendChild(anhBia);
                 }
             }

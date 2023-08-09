@@ -67,7 +67,7 @@ $total = 0;
                     <tr>
                       <!-- img -->
                       <td class="tp-cart-img">
-                        <a href="product-details.html">
+                        <a href="index.php?act=product-details&product_id=<?= $cart['product_id']?>">
                           <img src="../content/img/products/<?= $cart['product_id'] ?>/<?= $cart['img_name'] ?>" alt="" /></a>
                       </td>
                       <!-- title -->

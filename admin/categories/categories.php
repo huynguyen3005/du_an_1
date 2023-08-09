@@ -46,9 +46,9 @@ $categories = categorie_select_by_page($start, $limit);
         <thead>
             <tr>
                 <th></th>
-                <th>Mã loại</th>
-                <th>Tên loại</th>
-                <th>thao tác</th>
+                <th>Category ID</th>
+                <th>Category ID</th>
+                <th>Custom</th>
             </tr>
         </thead>
         <tbody>
@@ -62,8 +62,8 @@ $categories = categorie_select_by_page($start, $limit);
                         <?= $category['name'] ?>
                     </td>
                     <td>
-                        <a class="btn btn-outline-primary" href="index.php?act=edit-category&category_id=<?= $category['category_id'] ?>"><button>Sửa</button></a>
-                        <a class="btn btn-outline-primary" onclick="return confirm('Bạn có muốn xóa loại hàng không')" href="categories/delete_category.php?category_id=<?= $category['category_id'] ?>"><button>Xóa</button></a>
+                        <a class="btn btn-outline-primary" href="index.php?act=edit-category&category_id=<?= $category['category_id'] ?>"><button>Edit</button></a>
+                        <a class="btn btn-outline-primary" onclick="return confirm('Do you want to delete this category')" href="categories/delete_category.php?category_id=<?= $category['category_id'] ?>"><button>Delete</button></a>
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -88,7 +88,6 @@ $categories = categorie_select_by_page($start, $limit);
     <!-- button -->
     <section class="mt-1">
         <div class="button">
-            <a href="index.php?act=add-category"><button type="button" class="btn btn-outline-primary">Nhập
-                    thêm</button></a>
+            <a href="index.php?act=add-category"><button type="button" class="btn btn-outline-primary">Add new</button></a>
         </div>
     </section>

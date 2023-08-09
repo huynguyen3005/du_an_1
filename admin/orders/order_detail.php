@@ -42,7 +42,7 @@ if (isset($_SESSION['user'])) {
                      <div class="tp-order-details-top text-center mb-70">
                         <div class="tp-order-details-icon">
                            <span style="overflow: hidden;">
-                              <img width="120px" src="../content/img/users/<?= $order_user['photo']?>" alt="">
+                              <img width="140px" src="../content/img/users/<?= $order_user['photo']?>" alt="">
                            </span>
                         </div>
                         <div class="tp-order-details-content">

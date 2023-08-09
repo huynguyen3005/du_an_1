@@ -22,29 +22,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         if (strlen($category) == 0) {
-            $message['category'] = 'mời bạn chọn loại hàng';
+            $message['category'] = 'Please select a category';
         }
 
         if (strlen($name) == 0) {
-            $message['name'] = 'mời bạn nhập tên sản phẩm';
+            $message['name'] = 'Please enter product name';
         }
 
         if (strlen($description) == 0) {
-            $message['description'] = "nhập mô tả cho sản phẩm";
+            $message['description'] = "Please enter product description";
         }
 
         if ($price <= 0) {
-            $message['price'] = "nhập giá cho sản phẩm";
+            $message['price'] = "Please enter a price";
         }
 
         if ($quantity <= 0) {
-            $message['quantity'] = "nhập số lượng cho sản phẩm";
+            $message['quantity'] = "Please enter a quantity";
         }
 
         if (!isset($message)) {
             echo $product_id;
-            edit_product_by_id($category, $name, $quantity, $price, $description,$product_id);  
-            setcookie("edit-product", "sửa sản phẩm thành công", time() + 30);
+            edit_product_by_id($category, $name, $quantity, $price, $description, $product_id);
+            setcookie("edit-product", "edited product sucessfully", time() + 30);
             header("location: index.php?act=products");
             die();
         }
@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
+    
 }
 
 
@@ -78,28 +79,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <section class="col">
         <form class="row g-3" method="post" action="" enctype="multipart/form-data">
             <div class="col-md-12">
-                <label for="inputPassword4" class="form-label">Tên hàng hóa</label>
+                <label for="inputPassword4" class="form-label">Product name</label>
                 <input type="text" class="form-control" id="inputPassword4" name="name" value="<?= $product['name'] ?>">
                 <div class="alert-danger">
                     <?= $message['name'] ?? '' ?>
                 </div>
             </div>
             <div class="col-md-12">
-                <label for="inputAddress" class="form-label">Đơn giá</label>
+                <label for="inputAddress" class="form-label">Price</label>
                 <input type="number" class="form-control" id="inputAddress" name="price" placeholder="giá" value="<?= $product['price'] ?>">
                 <div class="alert-danger">
                     <?= $message['price'] ?? '' ?>
                 </div>
             </div>
             <div class="col-md-12">
-                <label for="inputAddress" class="form-label">Số lượng</label>
+                <label for="inputAddress" class="form-label">Quantity</label>
                 <input type="number" class="form-control" id="inputAddress" name="quantity" value="<?= $product['quantity'] ?>">
                 <div class="alert-danger">
                     <?= $message['quantity'] ?? '' ?>
                 </div>
             </div>
             <div class="col-md-12">
-                <label for="inputState" class="form-label">Loại hàng</label>
+                <label for="inputState" class="form-label">Category</label>
                 <select id="inputState" class="form-select" name="category">
                     <option value="<?= $product_cate['category_id'] ?>" selected><?= $product_cate['name'] ?></option>
                     <?php foreach ($categories as $category) : ?>
@@ -115,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div id="message-container"></div>
 
             <div class="col-12">
-                <label for="inputZip" class="form-label">Mô tả</label>
+                <label for="inputZip" class="form-label">Description</label>
                 <textarea name="description" style="min-height: 200px;" class="form-control" placeholder="mô tả" id="description"><?= $product['description'] ?></textarea>
                 <div class="alert-danger">
                     <?= $message['description'] ?? '' ?>
@@ -125,10 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- button -->
             <div class="button">
-                <button type="submit" name="edit-info" class="btn btn-outline-primary">Sửa</button>
-                <button type="reset" class="btn btn-outline-primary">Nhập lại</button>
-                <a href="index.php?act=products"><button type="button" class="btn btn-outline-primary">Danh
-                        sách</button></a>
+                <button type="submit" name="edit-info" class="btn btn-outline-primary">Edit</button>
+                <button type="reset" class="btn btn-outline-primary">Retype</button>
+                <a href="index.php?act=products"><button type="button" class="btn btn-outline-primary">List</button></a>
             </div>
         </form>
     </section>
@@ -142,8 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <img width="200px" height="260px" src="../content/img/products/<?php echo $product_id . '/' . $image['img_name'] ?>" alt="#">
                     </div>
                     <div class="mt-2">
-                        <a class="mx-auto" href="images/delete_image.php?product_id=<?= $product_id ?>&img_id=<?= $image['img_id'] ?>" onclick="return confirm('bạn có muốn xóa ảnh này không')"><button type="button" class="btn btn-outline-primary">xóa
-                                ảnh</button></a>
+                        <a class="mx-auto" href="images/delete_image.php?product_id=<?= $product_id ?>&img_id=<?= $image['img_id'] ?>" onclick="return confirm('bạn có muốn xóa ảnh này không')"><button type="button" class="btn btn-outline-primary">Delete image</button></a>
                     </div>
                 </div>
 
@@ -153,12 +152,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         <div class="col-md-12 mt-3">
-            <label for="inputCity" class="form-label">Hình ảnh</label>
+            <label for="inputCity" class="form-label">Inages</label>
             <form action="" method="post" enctype="multipart/form-data">
                 <div id="img-input">
                     <input id="image-input" type="file" class="form-control" id="inputAnh" name="images[]" accept="image/*" multiple>
                 </div>
-                <button type="submit" name="add-img" class="btn btn-outline-primary">thêm ảnh</button>
+                <button type="submit" name="add-img" class="btn btn-outline-primary">Add image</button>
             </form>
 
             <!-- preview image -->
@@ -193,14 +192,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 previewContainer.appendChild(imgBox);
 
                 if (i == 0) {
-                    imgBox.innerHTML = "<p>ảnh bìa</p>";
+                    imgBox.innerHTML = "<p>cover image</p>";
                 }
                 var image = document.createElement("img");
                 image.src = e.target.result;
                 imgBox.appendChild(image);
                 if (i == 0) {
                     var anhBia = document.createElement("p");
-                    anhBia.innerHTML = "ảnh bìa"
+                    anhBia.innerHTML = "cover image"
                     imgBox.appendChild(anhBia);
                 }
             }
