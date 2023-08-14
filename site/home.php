@@ -1,7 +1,4 @@
  <?php
- require_once "../dao/products.php";
- require_once "../dao/images.php";
- require_once "../dao/categories.php";
  $products = select_products_by_page(0, 8);
  $img = select_one_img_by_product_id(39);
  $count_products = count_all_products();

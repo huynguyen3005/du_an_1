@@ -1,5 +1,4 @@
 <?php
-require_once "../dao/cart.php";
 if (isset($_SESSION['user'])) {
    $carts = select_cart_by_user_id($_SESSION['user']['user_id']);
 }

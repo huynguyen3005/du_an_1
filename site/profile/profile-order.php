@@ -1,5 +1,4 @@
 <?php
-require_once "../dao/order.php";
 
 if (isset($_SESSION['user'])){
     $orders = select_order_by_user($_SESSION['user']['user_id']);

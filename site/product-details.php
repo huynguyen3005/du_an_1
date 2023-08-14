@@ -1,11 +1,4 @@
 <?php
-require_once "../global.php";
-require_once "../dao/products.php";
-require_once "../dao/images.php";
-require_once "../dao/categories.php";
-require_once "../dao/cart.php";
-require_once "../dao/product_variants.php";
-require_once "../dao/comments.php";
 
 $product_id = $_GET['product_id'];
 

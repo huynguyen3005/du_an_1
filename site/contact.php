@@ -1,5 +1,4 @@
 <?php
-require_once "../dao/contacts.php";
 
 // hiện cookie
 if (isset($_COOKIE['add-contact'])) {
