@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_COOKIE['edit-profile'])) {
    echo '<div class="alert alert-success" role="alert">
            ' . $_COOKIE['edit-profile'] . '
