@@ -1,6 +1,18 @@
 <?php
 ob_start();
 require_once "../global.php";
+require_once "../dao/users.php";
+require_once "../dao/products.php";
+require_once "../dao/images.php";
+require_once "../dao/categories.php";
+require_once "../dao/cart.php";
+require_once "../dao/product_variants.php";
+require_once "../dao/comments.php";
+require_once "../dao/order.php";
+require_once "../dao/wishlist.php";
+require_once "../dao/order_carts.php";
+require_once "../dao/contacts.php";
+
 ?>
 <!DOCTYPE html>
 <html >

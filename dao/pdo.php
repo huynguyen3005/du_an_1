@@ -31,7 +31,7 @@ function pdo_execute($sql)
     }
 }
 
-// truy vấn nhiều bản ghi
+// truy vấn nhiều bản ghi a
 function pdo_query($sql)
 {
     $sql_args = array_slice(func_get_args(), 1);

@@ -1,6 +1,5 @@
 <?php
-require_once "../dao/cart.php";
-require_once "../dao/wishlist.php";
+
 if (isset($_SESSION['user'])){
     $count_cart = count_cart_user($_SESSION['user']['user_id']);
     $count_wishlist = count_wishlist($_SESSION['user']['user_id']);

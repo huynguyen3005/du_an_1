@@ -1,8 +1,4 @@
 <?php
-require_once "../dao/order.php";
-require_once "../dao/wishlist.php";
-require_once "../dao/users.php";
-
 if (isset($_COOKIE['edit-profile'])) {
    echo '<div class="alert alert-success" role="alert">
            ' . $_COOKIE['edit-profile'] . '

@@ -1,8 +1,4 @@
 <?php
-require_once "../global.php";
-require_once "../dao/products.php";
-require_once "../dao/images.php";
-require_once "../dao/categories.php";
 $categories = categories_select_all();
 $top_selling = top_selling();
 
@@ -242,7 +238,7 @@ if (strpos($currenturl, '&page_no') !== false) {
                                  </ul>
                               </div>
                               <div class="tp-shop-top-result">
-                                 <p>Showing <?= $result['total'] ?> results</p>
+                                 <p>Showing <?= $result['total'] ?> results </p>
                               </div>
                            </div>
                         </div>

@@ -1,7 +1,4 @@
 <?php
-require_once "../dao/products.php";
-require_once "../dao/images.php";
-require_once "../dao/wishlist.php";
 if (isset($_SESSION['user'])){  
 $wishlist = select_wishlist_by_uid($_SESSION['user']['user_id']);
 }
@@ -39,7 +36,7 @@ $wishlist = select_wishlist_by_uid($_SESSION['user']['user_id']);
                              <tr>
                                <th colspan="2" class="tp-cart-header-product">Product</th>
                                <th class="tp-cart-header-price">Price</th>
-                               <th class="tp-cart-header-quantity">Quantity</th>
+                               <th class="tp-cart-header-quantity">Inventory</th>
                                <th>Action</th>
                                <th></th>
                              </tr>

@@ -1,7 +1,4 @@
 <?php
-require_once "../dao/users.php";
-
-
 if (isset($_POST['register'])) {
   $email = $_POST['email'];
   $name = $_POST['name'];
